@@ -1,0 +1,53 @@
+c:\users\shockwave\documents\visual studio 2012\Projects\HRM_Hospital\HRM_Hospital\bin\Debug\HRM_Hospital.exe
+c:\users\shockwave\documents\visual studio 2012\Projects\HRM_Hospital\HRM_Hospital\bin\Debug\HRM_Hospital.pdb
+c:\users\shockwave\documents\visual studio 2012\Projects\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.Properties.Resources.resources
+c:\users\shockwave\documents\visual studio 2012\Projects\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.csproj.GenerateResource.Cache
+c:\users\shockwave\documents\visual studio 2012\Projects\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.exe.licenses
+c:\users\shockwave\documents\visual studio 2012\Projects\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.exe
+c:\users\shockwave\documents\visual studio 2012\Projects\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.pdb
+C:\Users\Shockwave\documents\visual studio 2012\Projects\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.csprojResolveAssemblyReference.cache
+C:\Users\Shockwave\documents\visual studio 2012\Projects\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_DangNhap.resources
+C:\Users\Shockwave\documents\visual studio 2012\Projects\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_Main.resources
+C:\Users\Shockwave\documents\visual studio 2012\Projects\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_ThongTinNhanVien.resources
+C:\Users\Shockwave\documents\visual studio 2012\Projects\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_LichLamViec.resources
+C:\Users\Shockwave\documents\visual studio 2012\Projects\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_QLTienLuong.resources
+C:\Users\Shockwave\documents\visual studio 2012\Projects\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_QLNguoiDung.resources
+C:\Users\Shockwave\documents\visual studio 2012\Projects\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_VietDonXNP.resources
+C:\Users\Shockwave\documents\visual studio 2012\Projects\HRM_Hospital\HRM_Hospital\bin\Debug\HRM_Hospital.exe.config
+C:\Users\Shockwave\Desktop\HRM_Hospital\HRM_Hospital\bin\Debug\HRM_Hospital.exe.config
+C:\Users\Shockwave\Desktop\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.exe
+C:\Users\Shockwave\Desktop\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.pdb
+D:\HRM_Hospital\HRM_Hospital\bin\Debug\HRM_Hospital.exe.config
+D:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.exe
+D:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.pdb
+D:\HRM_Hospital\HRM_Hospital\bin\Debug\HRM_Hospital.exe
+D:\HRM_Hospital\HRM_Hospital\bin\Debug\HRM_Hospital.pdb
+D:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.csprojResolveAssemblyReference.cache
+D:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_Main.resources
+D:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_DangNhap.resources
+D:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_LichLamViec.resources
+D:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.Properties.Resources.resources
+D:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_QLTienLuong.resources
+D:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_QLNguoiDung.resources
+D:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_ThongTinNhanVien.resources
+D:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_VietDonXNP.resources
+D:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.csproj.GenerateResource.Cache
+D:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.exe.licenses
+E:\HRM_Hospital\HRM_Hospital\bin\Debug\HRM_Hospital.exe.config
+E:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.exe
+E:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.pdb
+E:\HRM_Hospital\HRM_Hospital\bin\Debug\HRM_Hospital.exe
+E:\HRM_Hospital\HRM_Hospital\bin\Debug\HRM_Hospital.pdb
+E:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.csprojResolveAssemblyReference.cache
+E:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_Main.resources
+E:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_DangNhap.resources
+E:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_LichLamViec.resources
+E:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.Properties.Resources.resources
+E:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_QLTienLuong.resources
+E:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_QLNguoiDung.resources
+E:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_VietDonXNP.resources
+E:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.csproj.GenerateResource.Cache
+E:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.exe.licenses
+E:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_NhanThan.resources
+E:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_QuaTrinhCongTaccs.resources
+E:\HRM_Hospital\HRM_Hospital\obj\Debug\HRM_Hospital.frm_QLNhanVien.resources
