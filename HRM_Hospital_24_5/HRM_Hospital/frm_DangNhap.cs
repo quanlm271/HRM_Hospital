@@ -16,7 +16,7 @@ namespace HRM_Hospital
         public DevExpress.XtraTab.XtraTabControl xtratabControl1;
         public frm_DangNhap()
         {
-			//hahahâhhaha
+            
             InitializeComponent();
             this.btn_dangnhap.Focus();
 
