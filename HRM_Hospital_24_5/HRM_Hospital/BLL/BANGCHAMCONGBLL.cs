@@ -10,9 +10,8 @@ using System.Windows.Forms;
 
 namespace HRM_Hospital.BLL
 {
-    class BANGCHAMCONGBLL
+    class BANGCHAMCONGBLL:BLL
     {
-        QLNSDataContext DB = new QLNSDataContext();
         NHANVIENBLL bll_NV = new NHANVIENBLL();
         public List<BANGCHAMCONG> LayTatCa()
         {
