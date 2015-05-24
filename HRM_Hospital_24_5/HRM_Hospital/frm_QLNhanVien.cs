@@ -16,8 +16,8 @@ namespace HRM_Hospital
     public partial class frm_QLNhanVien : DevExpress.XtraEditors.XtraForm 
     {
         public frm_Main frm_Main;
-        string MaNV;
-        NHANVIENBLL bll_NV = new NHANVIENBLL();
+        string MANV;
+        NHANVIENBLL bll_nhanvien = new NHANVIENBLL();
         public frm_QLNhanVien()
         {
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace HRM_Hospital
 
         public void Refresh_GridView()
         {
-            this.dataGridView1.DataSource = bll_NV.LayTatCa();
+            this.dataGridView1.DataSource = bll_nhanvien.LayTatCa();
         }
 
         public void Format_Time()
@@ -93,11 +93,14 @@ namespace HRM_Hospital
 
         private void btn_Xoa_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có thực sự muốn xóa?", "Question", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+            if (MessageBox.Show("Bạn có thực sự muốn xóa?", "Question", MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question) == DialogResult.Cancel)
             {
                 return;
             }
-            bll_NV.Xoa(this.MaNV);
+            bll_nhanvien.Status = "";
+            bll_nhanvien.onMinifrm = true;
+            bll_nhanvien.Xoa(MANV);
             Refresh_GridView();
             Clear_Insert();
         }
@@ -106,8 +109,9 @@ namespace HRM_Hospital
         {
             if (KiemTraDuLieuNhap() == false)
                 return;
-            this.MaNV = this.bll_NV.set_MANV();
-            bll_NV.Them(this.MaNV, tb_Hoten.Text, tb_CMND.Text, cb_Phai.Checked == true ? true : false,dtime_Ngaysinh.Value,tb_Quequan.Text,tb_Chucvu.Text);
+            this.MANV = this.bll_nhanvien.set_MANV();
+            bll_nhanvien.Them(this.MANV, tb_Hoten.Text, tb_CMND.Text,
+                cb_Phai.Checked == true ? true : false,dtime_Ngaysinh.Value,tb_Quequan.Text,tb_Chucvu.Text);
             Refresh_GridView();
             Clear_Insert();
         }
@@ -118,7 +122,8 @@ namespace HRM_Hospital
             {
                 return;
             }
-            bll_NV.Capnhat(this.MaNV, tb_Hoten.Text, tb_CMND.Text, cb_Phai.Checked == true ? true : false, dtime_Ngaysinh.Value, tb_Quequan.Text, tb_Chucvu.Text);
+            bll_nhanvien.Capnhat(this.MANV, tb_Hoten.Text, tb_CMND.Text,
+                cb_Phai.Checked == true ? true : false, dtime_Ngaysinh.Value, tb_Quequan.Text, tb_Chucvu.Text);
             Refresh_GridView();
             Clear_Insert();
         }
@@ -135,7 +140,7 @@ namespace HRM_Hospital
             if (!this.dataGridView1.Rows[r].IsNewRow)
             {
                 this.dataGridView1.Rows[r].Selected = true;
-               this.MaNV = this.dataGridView1.Rows[r].Cells["cl_MaNV"].Value.ToString();
+                this.MANV = this.dataGridView1.Rows[r].Cells["cl_MANV"].Value.ToString();
                 tb_Hoten.Text = this.dataGridView1.Rows[r].Cells["cl_Hoten"].Value.ToString();
                 tb_CMND.Text = this.dataGridView1.Rows[r].Cells["cl_CMND"].Value.ToString();
                 tb_Chucvu.Text = this.dataGridView1.Rows[r].Cells["cl_Quequan"].Value.ToString();
@@ -145,7 +150,7 @@ namespace HRM_Hospital
             }
         }
 
-        private void tb_MaNV_KeyPress(object sender, KeyPressEventArgs e)
+        private void tb_MANV_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = (e.KeyChar == 32);
         }
@@ -174,7 +179,7 @@ namespace HRM_Hospital
         private void btn_Thannhan_Click(object sender, EventArgs e)
         {
             this.frm_Main.tab_index++;
-            frm_NhanThan frm = new frm_NhanThan(this.MaNV);
+            frm_NhanThan frm = new frm_NhanThan(this.MANV);
             XtraTabPage tabpage = new XtraTabPage();
             tabpage.Text = "Nhân Thân";
             this.frm_Main.Add_TabPage(frm, tabpage);
@@ -183,7 +188,7 @@ namespace HRM_Hospital
         private void btn_Congtac_Click(object sender, EventArgs e)
         {
             this.frm_Main.tab_index++;
-            frm_QuaTrinhCongTaccs frm = new frm_QuaTrinhCongTaccs(this.MaNV);
+            frm_QTCongTac frm = new frm_QTCongTac(this.MANV);
             XtraTabPage tabpage = new XtraTabPage();
             tabpage.Text = "Quá Trình Công Tác";
             this.frm_Main.Add_TabPage(frm, tabpage);

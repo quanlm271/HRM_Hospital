@@ -202,9 +202,11 @@
             // 
             // btn_DangXuat
             // 
+            this.btn_DangXuat.Enabled = false;
             this.btn_DangXuat.Id = 18;
             this.btn_DangXuat.LargeGlyph = global::HRM_Hospital.Properties.Resources.DangXuat;
             this.btn_DangXuat.Name = "btn_DangXuat";
+            this.btn_DangXuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_DangXuat_ItemClick);
             // 
             // ribbon_TC
             // 
@@ -302,7 +304,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

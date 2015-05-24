@@ -30,7 +30,7 @@
         {
             this.txt_SoNgayLamViec = new System.Windows.Forms.TextBox();
             this.txt_TenNV = new DevExpress.XtraEditors.TextEdit();
-            this.txt_MaNV = new DevExpress.XtraEditors.TextEdit();
+            this.txt_MANV = new DevExpress.XtraEditors.TextEdit();
             this.txt_SoNgayNghi = new DevExpress.XtraEditors.TextEdit();
             this.txt_Luong = new DevExpress.XtraEditors.TextEdit();
             this.txt_PhuCap = new DevExpress.XtraEditors.TextEdit();
@@ -46,10 +46,10 @@
             this.lb_luong = new DevExpress.XtraEditors.LabelControl();
             this.lb_songaynghi = new DevExpress.XtraEditors.LabelControl();
             this.lb_tennv = new DevExpress.XtraEditors.LabelControl();
-            this.lb_manv = new DevExpress.XtraEditors.LabelControl();
+            this.lb_MANV = new DevExpress.XtraEditors.LabelControl();
             this.labelquanlytienluong = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txt_TenNV.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_MaNV.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_MANV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_SoNgayNghi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_Luong.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_PhuCap.Properties)).BeginInit();
@@ -73,15 +73,15 @@
             this.txt_TenNV.Size = new System.Drawing.Size(210, 20);
             this.txt_TenNV.TabIndex = 66;
             // 
-            // txt_MaNV
+            // txt_MANV
             // 
-            this.txt_MaNV.Location = new System.Drawing.Point(136, 9);
-            this.txt_MaNV.Name = "txt_MaNV";
-            this.txt_MaNV.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_MaNV.Properties.Appearance.Options.UseFont = true;
-            this.txt_MaNV.Properties.ReadOnly = true;
-            this.txt_MaNV.Size = new System.Drawing.Size(210, 20);
-            this.txt_MaNV.TabIndex = 65;
+            this.txt_MANV.Location = new System.Drawing.Point(136, 9);
+            this.txt_MANV.Name = "txt_MANV";
+            this.txt_MANV.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_MANV.Properties.Appearance.Options.UseFont = true;
+            this.txt_MANV.Properties.ReadOnly = true;
+            this.txt_MANV.Size = new System.Drawing.Size(210, 20);
+            this.txt_MANV.TabIndex = 65;
             // 
             // txt_SoNgayNghi
             // 
@@ -238,15 +238,15 @@
             this.lb_tennv.TabIndex = 48;
             this.lb_tennv.Text = "Tên Nhân Viên :";
             // 
-            // lb_manv
+            // lb_MANV
             // 
-            this.lb_manv.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_manv.Location = new System.Drawing.Point(46, 12);
-            this.lb_manv.Margin = new System.Windows.Forms.Padding(4);
-            this.lb_manv.Name = "lb_manv";
-            this.lb_manv.Size = new System.Drawing.Size(72, 13);
-            this.lb_manv.TabIndex = 47;
-            this.lb_manv.Text = "Mã Nhân Viên :";
+            this.lb_MANV.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_MANV.Location = new System.Drawing.Point(46, 12);
+            this.lb_MANV.Margin = new System.Windows.Forms.Padding(4);
+            this.lb_MANV.Name = "lb_MANV";
+            this.lb_MANV.Size = new System.Drawing.Size(72, 13);
+            this.lb_MANV.TabIndex = 47;
+            this.lb_MANV.Text = "Mã Nhân Viên :";
             // 
             // labelquanlytienluong
             // 
@@ -266,7 +266,7 @@
             this.ClientSize = new System.Drawing.Size(764, 335);
             this.Controls.Add(this.txt_SoNgayLamViec);
             this.Controls.Add(this.txt_TenNV);
-            this.Controls.Add(this.txt_MaNV);
+            this.Controls.Add(this.txt_MANV);
             this.Controls.Add(this.txt_SoNgayNghi);
             this.Controls.Add(this.txt_Luong);
             this.Controls.Add(this.txt_PhuCap);
@@ -282,7 +282,7 @@
             this.Controls.Add(this.lb_luong);
             this.Controls.Add(this.lb_songaynghi);
             this.Controls.Add(this.lb_tennv);
-            this.Controls.Add(this.lb_manv);
+            this.Controls.Add(this.lb_MANV);
             this.Controls.Add(this.labelquanlytienluong);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -290,7 +290,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Quản Lý Tiền Lương";
             ((System.ComponentModel.ISupportInitialize)(this.txt_TenNV.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_MaNV.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_MANV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_SoNgayNghi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_Luong.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_PhuCap.Properties)).EndInit();
@@ -304,7 +304,7 @@
 
         private System.Windows.Forms.TextBox txt_SoNgayLamViec;
         private DevExpress.XtraEditors.TextEdit txt_TenNV;
-        private DevExpress.XtraEditors.TextEdit txt_MaNV;
+        private DevExpress.XtraEditors.TextEdit txt_MANV;
         private DevExpress.XtraEditors.TextEdit txt_SoNgayNghi;
         private DevExpress.XtraEditors.TextEdit txt_Luong;
         private DevExpress.XtraEditors.TextEdit txt_PhuCap;
@@ -320,7 +320,7 @@
         private DevExpress.XtraEditors.LabelControl lb_luong;
         private DevExpress.XtraEditors.LabelControl lb_songaynghi;
         private DevExpress.XtraEditors.LabelControl lb_tennv;
-        private DevExpress.XtraEditors.LabelControl lb_manv;
+        private DevExpress.XtraEditors.LabelControl lb_MANV;
         private DevExpress.XtraEditors.LabelControl labelquanlytienluong;
     }
 }

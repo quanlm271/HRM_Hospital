@@ -21,7 +21,7 @@ namespace HRM_Hospital
         {
             InitializeComponent();
             //this.txt_TenNV.Text = BLL.get_TenNV();
-            //this.txt_SoNgayLamViec.Text = bll_BCC.get_SoNgayCC(this.frm_main.MaNV).ToString();
+            //this.txt_SoNgayLamViec.Text = bll_BCC.get_SoNgayCC(this.frm_main.MANV).ToString();
         }
     }
 }

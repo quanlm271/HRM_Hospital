@@ -20,14 +20,14 @@ namespace HRM_Hospital
         int NgayDaNghi=0;
         public int songaynghi = 15;
         public frm_Main frm_main;
-        String MaNV;
+        String MANV;
         DONXINBLL bll_donxin = new DONXINBLL();
         NHANVIENBLL bll_nhanvien = new NHANVIENBLL();
-        public frm_VietDonXNP(string MaNV)
+        public frm_VietDonXNP(string MANV)
         {
             InitializeComponent();
-            this.MaNV = MaNV;
-            this.LabelLoad();
+            this.MANV = MANV;
+            this.FillData();
             Format_Time();
         }
 
@@ -43,7 +43,7 @@ namespace HRM_Hospital
         {
             if (this.Days <= this.NgayConLai && this.Days>0)
             {
-                bll_donxin.Them(this.frm_main.MaNV,
+                bll_donxin.Them(this.frm_main.MANV,
                                 Int16.Parse(this.tb_songay.Text),
                                 this.tb_lydo.Text,
                                 this.date_tungay.Value,
@@ -55,22 +55,28 @@ namespace HRM_Hospital
                 MessageBox.Show("Số ngày xin nghỉ không hợp lệ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void cal_Date()
         {
             Days = this.date_denngay.Value.Subtract(this.date_tungay.Value).Days + 1;
             this.tb_songay.Text = Days.ToString();
         }
-        private void LabelLoad()
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            this.cal_Date();
+        }
+      
+        private void FillData()
         {
             this.NgayDaNghi = 0;
-            List<DONXIN> donxin = new List<DONXIN>();
-            donxin = bll_donxin.get_DONXIN(MaNV);
+            var donxin = bll_donxin.get_DONXIN(MANV);
             foreach (DONXIN dx in donxin)
                 this.NgayDaNghi += dx.SONGAYNGHI.Value;
             NgayConLai = songaynghi - NgayDaNghi;
-            this.tb_manv.Text = MaNV;
 
-            this.tb_ten.Text = this.bll_nhanvien.get_TEN(MaNV);
+            this.cal_Date();
+            this.tb_MANV.Text = MANV;
+            this.tb_ten.Text = this.bll_nhanvien.get_TEN(MANV);
             this.lb_SoNgayDuocNghi.Text = "Số ngày được nghỉ: " + songaynghi;
             this.lb_SoNgayDaNghi.Text = "Số ngày đã nghỉ: " + NgayDaNghi;          
             this.lb_SoNgayConLai.Text = "Số ngày còn lại: " + NgayConLai;
@@ -80,7 +86,7 @@ namespace HRM_Hospital
         }
         private void frm_VietDonXNP_Load(object sender, EventArgs e)
         {
-            this.LabelLoad();
+            this.FillData();
         }
     }
 }

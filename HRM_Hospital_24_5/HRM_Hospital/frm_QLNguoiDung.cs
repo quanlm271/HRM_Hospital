@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using HRM_Hospital.BLL;
+
 namespace HRM_Hospital
 {
     public partial class frm_QLNguoiDung : DevExpress.XtraEditors.XtraForm
     {
-        TAIKHOANBLL taikhoan = new TAIKHOANBLL();
-        NHANVIENBLL nhanvien = new NHANVIENBLL();
+        TAIKHOANBLL bll_taikhoan = new TAIKHOANBLL();
         public frm_QLNguoiDung()
         {
             
@@ -22,22 +22,21 @@ namespace HRM_Hospital
             btn_Capnhat.Enabled = false;
             btn_Xoa.Enabled = false;
             Refresh_GridView();
-            tb_MaNV.Text = "(Nope)";
-            foreach(string str in nhanvien.LayMaNV())
-            {
-                tb_MaNV.Items.Add(str);
-            }
-            
+            cbb_MANV.Text = "(Nope)";
+            var listMANV = bll_taikhoan.LayMANV();
+            foreach (String str in listMANV)
+                this.cbb_MANV.Items.Add(str);
+         
         }
 
         public void Refresh_GridView()
         {
-            this.dataGridView1.DataSource = taikhoan.LayTatCa();
+            this.dataGridView1.DataSource = bll_taikhoan.LayTatCa();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            tb_MaNV.Enabled = false;
+            cbb_MANV.Enabled = false;
             btn_Themmoi.Enabled = false;
             btn_Capnhat.Enabled = true;
             btn_Xoa.Enabled = true;
@@ -47,7 +46,7 @@ namespace HRM_Hospital
             if (!this.dataGridView1.Rows[r].IsNewRow)
             {
                 this.dataGridView1.Rows[r].Selected = true;
-                tb_MaNV.Text = this.dataGridView1.Rows[r].Cells["MANV"].Value.ToString();
+                cbb_MANV.Text = this.dataGridView1.Rows[r].Cells["MANV"].Value.ToString();
                 tb_TDN.Text = this.dataGridView1.Rows[r].Cells["TENDANGNHAP"].Value.ToString().Trim();
                 tb_matkhau.Text = this.dataGridView1.Rows[r].Cells["MATKHAU"].Value.ToString();
                 if (dataGridView1.Rows[r].Cells["QUYENTRUYCAP"].Value.ToString() == "True")
@@ -63,7 +62,7 @@ namespace HRM_Hospital
 
         private bool KiemTraDuLieuNhap()
         {
-            if (tb_MaNV.Text == "(Nope)")
+            if (cbb_MANV.Text == "(Nope)")
             {
                 MessageBox.Show("Mã nhân viên chưa được xác nhận", "Thông Báo", MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
@@ -88,29 +87,29 @@ namespace HRM_Hospital
         {
             if (KiemTraDuLieuNhap() == false)
                 return;
-            if (taikhoan.KiemTraMaTrung(tb_TDN.Text))
+            if (bll_taikhoan.KiemTraMaTrung(tb_TDN.Text))
             {
                 MessageBox.Show("Tên đăng nhập đã tồn tại", "Thông Báo", MessageBoxButtons.OK,
                   MessageBoxIcon.Error);
                 return;
             }
-            if (taikhoan.KiemTraNV(tb_MaNV.Text))
+            if (bll_taikhoan.KiemTraNV(cbb_MANV.Text))
             {
                 MessageBox.Show("Một tài khoản tương ứng với một nhân viên", "Thông Báo", MessageBoxButtons.OK,
                   MessageBoxIcon.Error);
                 return;
             }
-            taikhoan.Them(tb_TDN.Text, tb_MaNV.Text, tb_matkhau.Text, cb_Admin.Checked == true ? true : false);      
+            bll_taikhoan.Them(tb_TDN.Text, cbb_MANV.Text, tb_matkhau.Text, cb_Admin.Checked == true ? true : false);      
             Refresh_GridView();
         }
 
         public void Clear_Insert()
         {
-            tb_MaNV.Enabled = true;
+            cbb_MANV.Enabled = true;
             btn_Themmoi.Enabled = true;
             btn_Capnhat.Enabled = false;
             btn_Xoa.Enabled = false;
-            tb_MaNV.Text = "(Nope)";
+            cbb_MANV.Text = "(Nope)";
             tb_matkhau.Text = null;
             tb_TDN.Text = null;
             cb_Admin.Checked = false;
@@ -122,7 +121,7 @@ namespace HRM_Hospital
             {
                 return;
             }
-            taikhoan.Xoa(tb_TDN.Text);
+            bll_taikhoan.Xoa(this.cbb_MANV.Text);
             Refresh_GridView();
             Clear_Insert();
         }
@@ -131,7 +130,7 @@ namespace HRM_Hospital
         {
             if (!KiemTraDuLieuNhap())
                 return;
-            taikhoan.Capnhat(tb_TDN.Text, tb_MaNV.Text, tb_matkhau.Text, cb_Admin.Checked == true ? true : false);
+            bll_taikhoan.Capnhat(tb_TDN.Text, cbb_MANV.Text, tb_matkhau.Text, cb_Admin.Checked == true ? true : false);
             Refresh_GridView();
             Clear_Insert();
         }

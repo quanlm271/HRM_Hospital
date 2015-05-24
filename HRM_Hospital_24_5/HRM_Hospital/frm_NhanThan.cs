@@ -17,11 +17,14 @@ namespace HRM_Hospital
     {
         THANNHANBLL bll_TN = new THANNHANBLL();
         COTNBLL bll_CTN = new COTNBLL();
-        String MaNV, MaTN;
-        public frm_NhanThan(string MaNV)
+        NHANVIENBLL bll_nhanvien = new NHANVIENBLL();
+        String MANV, MaTN;
+        public frm_NhanThan(string MANV)
         {
             InitializeComponent();
-            this.MaNV = MaNV;
+            
+            this.MANV = MANV;
+            this.lb_tennhanvien.Text += bll_nhanvien.get_TEN(MANV);
             btn_Capnhat.Enabled = false;
             btn_Xoa.Enabled = false;
             Refresh_GridView();
@@ -32,7 +35,7 @@ namespace HRM_Hospital
         public void Refresh_GridView()
         {
             
-            this.dataGridView1.DataSource = bll_TN.get_ThanNhan(this.MaNV);
+            this.dataGridView1.DataSource = bll_TN.get_ThanNhan(this.MANV);
         }
 
         public void Format_Time()
@@ -112,9 +115,9 @@ namespace HRM_Hospital
         {
             if (KiemTraDuLieuNhap() == false)
                 return;
-            this.MaTN = this.bll_TN.set_MaTN(this.MaNV);
+            this.MaTN = this.bll_TN.set_MaTN(this.MANV);
             bll_TN.Them(this.MaTN, tb_Hoten.Text, dtime_Ngaysinh.Value ,tb_Quanhe.Text, tb_Nghenghiep.Text,tb_Congtac.Text);
-            bll_CTN.Them(this.MaNV, this.MaTN);
+            bll_CTN.Them(this.MANV, this.MaTN);
             Refresh_GridView();
             Clear_Insert();
        } 

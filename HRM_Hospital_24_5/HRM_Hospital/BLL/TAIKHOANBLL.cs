@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace HRM_Hospital.BLL
 {
-    class TAIKHOANBLL
+    class TAIKHOANBLL:BLL
     {
-        QLNSDataContext DB = new QLNSDataContext();
+      
         public List<TAIKHOAN> LayTatCa()
         {
             return DB.TAIKHOANs.ToList();
@@ -29,11 +29,11 @@ namespace HRM_Hospital.BLL
             return false;
         }
 
-        public bool KiemTraNV(string MaNV)
+        public bool KiemTraNV(string MANV)
         {
             foreach (string nv in (from record in DB.TAIKHOANs select record.MANV))
             {
-                if ((nv.ToLower().Contains(MaNV.ToLower()) == true) && (nv.Trim().Length == MaNV.Trim().Length))
+                if ((nv.ToLower().Contains(MANV.ToLower()) == true) && (nv.Trim().Length == MANV.Trim().Length))
                 {
                     return true;
                 }
@@ -41,24 +41,43 @@ namespace HRM_Hospital.BLL
             return false;
         }
 
-        public string LayMaNV(string TENDANGNHAP,  string MATKHAU)
+        //For UM form to load MANV of all user
+        public List<String> LayMANV()
         {
             try
             {
-                var taikhoan = DB.TAIKHOANs.Where(tk => tk.TENDANGNHAP == TENDANGNHAP && tk.MATKHAU == MATKHAU).FirstOrDefault();
-                return taikhoan.MANV.ToString(); 
+                var taikhoan = (from Table in DB.NHANVIENs
+                               select (Table.MANV)).ToList();
+                return taikhoan;
             }
             catch
             {
-                MessageBox.Show("Kiểm tra đăng nhập thất bại.", "Thông báo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Error!", "Thông báo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            return null;
+        }
+
+        //For Login form to load user's MANV 
+        public string LayMANV(string TENDANGNHAP)
+        {
+            try
+            {
+                var taikhoan = DB.TAIKHOANs.Where(tk => tk.TENDANGNHAP == TENDANGNHAP).FirstOrDefault();
+                return taikhoan.MANV;
+            }
+            catch
+            {
+                MessageBox.Show("Error!", "Thông báo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             return "";
         }
+
         public int KiemTra_DangNhap(string TENDANGNHAP, string MATKHAU)
         {
             try
             {
-                var taikhoan = DB.TAIKHOANs.Where(tk => tk.TENDANGNHAP == TENDANGNHAP && tk.MATKHAU == MATKHAU).FirstOrDefault();
+                var taikhoan = DB.TAIKHOANs.Where(tk => tk.TENDANGNHAP == TENDANGNHAP 
+                    && tk.MATKHAU == MATKHAU).FirstOrDefault();
                 if(taikhoan!=null)
                 {
                     if (taikhoan.QUYENTRUYCAP == true) //la admin
@@ -69,7 +88,8 @@ namespace HRM_Hospital.BLL
             }
             catch
             {
-                MessageBox.Show("Kiểm tra đăng nhập thất bại.", "Thông báo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Kiểm tra đăng nhập thất bại.", "Thông báo.", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information);
             }
             return -1;
         }
@@ -85,11 +105,13 @@ namespace HRM_Hospital.BLL
                 taikhoan.QUYENTRUYCAP = QUYENTRUYCAP;
                 DB.TAIKHOANs.InsertOnSubmit(taikhoan);
                 DB.SubmitChanges();
-                MessageBox.Show("Thêm mới thông tin thành công.", "Thông báo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thêm mới thông tin thành công.", "Thông báo.", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
             catch
             {
-                MessageBox.Show("Chưa có mã nhân viên tương ứng.", "Thông báo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thêm mới thông tin thất bại.", "Thông báo.", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information);
             }
             
         }
@@ -102,27 +124,41 @@ namespace HRM_Hospital.BLL
                 taikhoan.MATKHAU = MATKHAU;
                 taikhoan.QUYENTRUYCAP = QUYENTRUYCAP;
                 DB.SubmitChanges();
-                MessageBox.Show("Cập nhật thông tin thành công.", "Thông báo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Cập nhật thông tin thành công.", "Thông báo.", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information);
             }
             catch
             {
-                MessageBox.Show("Cập nhật thông tin thất bại.", "Thông báo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Cập nhật thông tin thất bại.", "Thông báo.", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information);
             }
 
         }
 
-        public void Xoa(string TENDANGNHAP)
+        public void Xoa(string MANV)
         {
             try
             {
-                var taikhoan = DB.TAIKHOANs.FirstOrDefault(tk => tk.TENDANGNHAP == TENDANGNHAP);
-                DB.TAIKHOANs.DeleteOnSubmit(taikhoan);
-                DB.SubmitChanges();
-                MessageBox.Show("Xóa thông tin thành công.", "Thông báo", MessageBoxButtons.OK);
+                var taikhoan = DB.TAIKHOANs.FirstOrDefault(rc => rc.MANV == MANV);
+                if (taikhoan != null)
+                {
+                    DB.TAIKHOANs.DeleteOnSubmit(taikhoan);
+                    DB.SubmitChanges();
+                    if (!onMinifrm)
+                        MessageBox.Show("Xóa thông tin thành công.", "Thông báo.", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                    else
+                        this.Status += "\nXóa trong Bảng TAIKHOAN: THÀNH CÔNG";
+                }
+                   
             }
             catch
             {
-                MessageBox.Show("Xóa thông tin thất bại.", "Thông báo", MessageBoxButtons.OK);
+                if (!onMinifrm)
+                    MessageBox.Show("Thêm mới thông tin thất bại.", "Thông báo.", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                else
+                    this.Status += "\nXóa trong Bảng TAIKHOAN: THẤT BẠI";
             }
         }
     }

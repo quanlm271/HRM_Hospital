@@ -48,7 +48,7 @@
             this.btn_Xoa = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Congtac = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Thannhan = new DevExpress.XtraEditors.SimpleButton();
-            this.cl_MaNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cl_MANV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_Hoten = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_CMND = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_Gioitinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -209,7 +209,7 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cl_MaNV,
+            this.cl_MANV,
             this.cl_Hoten,
             this.cl_CMND,
             this.cl_Gioitinh,
@@ -269,12 +269,12 @@
             this.btn_Thannhan.Text = "Thông Tin Thân Nhân";
             this.btn_Thannhan.Click += new System.EventHandler(this.btn_Thannhan_Click);
             // 
-            // cl_MaNV
+            // cl_MANV
             // 
-            this.cl_MaNV.DataPropertyName = "MANV";
-            this.cl_MaNV.HeaderText = "Mã Nhân Viên";
-            this.cl_MaNV.Name = "cl_MaNV";
-            this.cl_MaNV.ReadOnly = true;
+            this.cl_MANV.DataPropertyName = "MANV";
+            this.cl_MANV.HeaderText = "Mã Nhân Viên";
+            this.cl_MANV.Name = "cl_MANV";
+            this.cl_MANV.ReadOnly = true;
             // 
             // cl_Hoten
             // 
@@ -365,7 +365,7 @@
         private DevExpress.XtraEditors.SimpleButton btn_Thannhan;
         private DevExpress.XtraEditors.TextEdit tb_CMND;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_MaNV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cl_MANV;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Hoten;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_CMND;
         private System.Windows.Forms.DataGridViewTextBoxColumn cl_Gioitinh;

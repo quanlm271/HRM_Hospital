@@ -33,16 +33,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v14.1" />
-    <Reference Include="DevExpress.Printing.v14.1.Core" />
-    <Reference Include="DevExpress.Utils.v14.1" />
-    <Reference Include="DevExpress.Xpo.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraBars.v14.1" />
-    <Reference Include="DevExpress.Sparkline.v14.1.Core" />
-    <Reference Include="DevExpress.XtraEditors.v14.1" />
-    <Reference Include="DevExpress.XtraGrid.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v14.2" />
+    <Reference Include="DevExpress.Printing.v14.2.Core" />
+    <Reference Include="DevExpress.Utils.v14.2" />
+    <Reference Include="DevExpress.Xpo.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v14.2" />
+    <Reference Include="DevExpress.Sparkline.v14.2.Core" />
+    <Reference Include="DevExpress.XtraEditors.v14.2" />
+    <Reference Include="DevExpress.XtraGrid.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -66,6 +66,7 @@
     <Compile Include="BLL\LICHBLL.cs" />
     <Compile Include="BLL\LUONGBLL.cs" />
     <Compile Include="BLL\NHANVIENBLL.cs" />
+    <Compile Include="BLL\PHONGKHOABLL.cs" />
     <Compile Include="BLL\QUATRINHCONGTAC.cs" />
     <Compile Include="BLL\QUYETDINH.cs" />
     <Compile Include="BLL\TAIKHOANBLL.cs" />
@@ -89,6 +90,18 @@
     <Compile Include="frm_LichLamViec.Designer.cs">
       <DependentUpon>frm_LichLamViec.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_NhanThan.cs" />
+    <Compile Include="frm_NhanThan.Designer.cs">
+      <DependentUpon>frm_NhanThan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_PhongKhoa.cs" />
+    <Compile Include="frm_PhongKhoa.Designer.cs">
+      <DependentUpon>frm_PhongKhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_QuaTrinhCongTaccs.cs" />
+    <Compile Include="frm_QuaTrinhCongTaccs.Designer.cs">
+      <DependentUpon>frm_QuaTrinhCongTaccs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="frm_QLTienLuong.cs" />
@@ -99,9 +112,9 @@
     <Compile Include="frm_QLNguoiDung.Designer.cs">
       <DependentUpon>frm_QLNguoiDung.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_ThongTinNhanVien.cs" />
-    <Compile Include="frm_ThongTinNhanVien.Designer.cs">
-      <DependentUpon>frm_ThongTinNhanVien.cs</DependentUpon>
+    <Compile Include="frm_QLNhanVien.cs" />
+    <Compile Include="frm_QLNhanVien.Designer.cs">
+      <DependentUpon>frm_QLNhanVien.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_VietDonXNP.cs" />
     <Compile Include="frm_VietDonXNP.Designer.cs">
@@ -120,6 +133,15 @@
     <EmbeddedResource Include="frm_LichLamViec.resx">
       <DependentUpon>frm_LichLamViec.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_NhanThan.resx">
+      <DependentUpon>frm_NhanThan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_PhongKhoa.resx">
+      <DependentUpon>frm_PhongKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_QuaTrinhCongTaccs.resx">
+      <DependentUpon>frm_QuaTrinhCongTaccs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -137,8 +159,8 @@
     <EmbeddedResource Include="frm_QLNguoiDung.resx">
       <DependentUpon>frm_QLNguoiDung.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_ThongTinNhanVien.resx">
-      <DependentUpon>frm_ThongTinNhanVien.cs</DependentUpon>
+    <EmbeddedResource Include="frm_QLNhanVien.resx">
+      <DependentUpon>frm_QLNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_VietDonXNP.resx">
       <DependentUpon>frm_VietDonXNP.cs</DependentUpon>

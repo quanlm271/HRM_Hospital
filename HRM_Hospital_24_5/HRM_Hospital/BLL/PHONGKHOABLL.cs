@@ -8,15 +8,12 @@ using System.Windows.Forms;
 
 namespace HRM_Hospital.BLL
 {
-    class PHONGKHOABLL
+    class PHONGKHOABLL:BLL
     {
-        QLNSDataContext DB = new QLNSDataContext();
         public List<PHONGKHOA> LayTatCa()
         {
             return DB.PHONGKHOAs.ToList();
         }
-
-
         public List<string> LayMaPHG()
         {
             List<string> str = new List<string>();
@@ -48,11 +45,13 @@ namespace HRM_Hospital.BLL
                 nv.KHOI = KHOI;
                 DB.PHONGKHOAs.InsertOnSubmit(nv);
                 DB.SubmitChanges();
-                MessageBox.Show("Thêm mới thông tin thành công.", "Thông báo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thêm mới thông tin thành công.", "Thông báo.", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information);
             }
             catch
             {
-                MessageBox.Show("Thêm mới thông tin thất bại.", "Thông báo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thêm mới thông tin thất bại.", "Thông báo.", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information);
             }
         }
         public void Capnhat(string MaPHG, string TENPHG, string KHOI)
@@ -64,11 +63,13 @@ namespace HRM_Hospital.BLL
                 nv.TENPHG = TENPHG;
                 nv.KHOI = KHOI;
                 DB.SubmitChanges();
-                MessageBox.Show("Thêm mới thông tin thành công.", "Thông báo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thêm mới thông tin thành công.", "Thông báo.", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information);
             }
             catch
             {
-                MessageBox.Show("Thêm mới thông tin thất bại.", "Thông báo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thêm mới thông tin thất bại.", "Thông báo.", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information);
             }
         }
         public void Xoa(string MaPHG)

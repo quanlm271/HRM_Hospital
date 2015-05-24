@@ -14,12 +14,17 @@ namespace HRM_Hospital
     {
         public Boolean user = false;
         public Boolean admin = false;
-        public string MaNV;
+        public string MANV;
         public int tab_index = 0;
         public frm_Main()
         {
             InitializeComponent();
             tab_index++;
+            this.CallLoginForm();
+           
+        }
+        private void CallLoginForm()
+        {
             frm_DangNhap frm = new frm_DangNhap();
             frm.frmMain = this;
             frm.xtratabControl1 = this.xtraTabControl1;
@@ -27,7 +32,6 @@ namespace HRM_Hospital
             tabpage.Text = "Đăng Nhập";
             this.Add_TabPage(frm, tabpage);
         }
-
         private void xtraTabControl1_CloseButtonClick(object sender, EventArgs e)
         {
             tab_index--;
@@ -76,8 +80,7 @@ namespace HRM_Hospital
         private void btn_LichLamViec_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             tab_index++;
-            frm_LichLamViec frm = new frm_LichLamViec();
-            frm.frmMain = this;
+            frm_LichLamViec frm = new frm_LichLamViec(this.MANV);
             XtraTabPage tabpage = new XtraTabPage();
             tabpage.Text = "Xem Lịch";
             this.Add_TabPage(frm, tabpage);
@@ -86,7 +89,7 @@ namespace HRM_Hospital
         private void btn_DonNghiPhep_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             tab_index++;
-            frm_VietDonXNP frm = new frm_VietDonXNP(this.MaNV);
+            frm_VietDonXNP frm = new frm_VietDonXNP(this.MANV);
             frm.frm_main = this;
             XtraTabPage tabpage = new XtraTabPage();
             tabpage.Text = "Đơn Xin Nghỉ Phép";
@@ -104,10 +107,32 @@ namespace HRM_Hospital
 
         public void frm_Main_Load(object sender, EventArgs e)
         {
-            if (this.user)
+            if (this.user || this.admin)
+            {
                 this.ribbon_user.Visible = true;
-            if (this.admin)
-                this.ribbon_admin.Visible = true;
+                this.btn_DangXuat.Enabled = true;
+                if (this.admin)
+                {
+                    this.ribbon_admin.Visible = true;
+                    this.btn_DonNghiPhep_ItemClick(null, null);
+
+                }
+            }
+            
+        }
+
+        private void btn_DangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            int index = this.xtraTabControl1.TabPages.Count();
+            while (index-- > 0)
+                this.xtraTabControl1.TabPages.RemoveAt(index);
+            this.MANV = null;
+            this.ribbon_user.Visible = false;
+            this.ribbon_admin.Visible = false;
+            this.user = false;
+            this.admin = false;
+            this.btn_DangXuat.Enabled = false;
+            this.CallLoginForm();
         }
     }
 }

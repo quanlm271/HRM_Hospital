@@ -33,16 +33,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v14.2" />
-    <Reference Include="DevExpress.Printing.v14.2.Core" />
-    <Reference Include="DevExpress.Utils.v14.2" />
-    <Reference Include="DevExpress.Xpo.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraBars.v14.2" />
-    <Reference Include="DevExpress.Sparkline.v14.2.Core" />
-    <Reference Include="DevExpress.XtraEditors.v14.2" />
-    <Reference Include="DevExpress.XtraGrid.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraLayout.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraPrinting.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v13.1" />
+    <Reference Include="DevExpress.Printing.v13.1.Core" />
+    <Reference Include="DevExpress.Utils.v13.1" />
+    <Reference Include="DevExpress.Xpo.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v13.1" />
+    <Reference Include="DevExpress.Sparkline.v13.1.Core" />
+    <Reference Include="DevExpress.XtraEditors.v13.1" />
+    <Reference Include="DevExpress.XtraGrid.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v13.1, Version=13.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -61,16 +61,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\BANGCHAMCONGBLL.cs" />
+    <Compile Include="BLL\BLL.cs" />
     <Compile Include="BLL\COTNBLL.cs" />
     <Compile Include="BLL\DONXINBLL.cs" />
     <Compile Include="BLL\LICHBLL.cs" />
     <Compile Include="BLL\LUONGBLL.cs" />
     <Compile Include="BLL\NHANVIENBLL.cs" />
     <Compile Include="BLL\PHONGKHOABLL.cs" />
-    <Compile Include="BLL\QUATRINHCONGTAC.cs" />
-    <Compile Include="BLL\QUYETDINH.cs" />
+    <Compile Include="BLL\QTCONGTACBLL.cs" />
+    <Compile Include="BLL\QUYETDINHBLL.cs" />
     <Compile Include="BLL\TAIKHOANBLL.cs" />
     <Compile Include="BLL\THANNHANBLL.cs" />
+    <Compile Include="BLL\TRINHDOBLL.cs" />
     <Compile Include="DAL\QLNS.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -106,11 +108,11 @@
     <Compile Include="frm_PhongKhoa.Designer.cs">
       <DependentUpon>frm_PhongKhoa.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_QuaTrinhCongTaccs.cs">
+    <Compile Include="frm_QTCongTac.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_QuaTrinhCongTaccs.Designer.cs">
-      <DependentUpon>frm_QuaTrinhCongTaccs.cs</DependentUpon>
+    <Compile Include="frm_QTCongTac.Designer.cs">
+      <DependentUpon>frm_QTCongTac.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -157,8 +159,8 @@
     <EmbeddedResource Include="frm_PhongKhoa.resx">
       <DependentUpon>frm_PhongKhoa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_QuaTrinhCongTaccs.resx">
-      <DependentUpon>frm_QuaTrinhCongTaccs.cs</DependentUpon>
+    <EmbeddedResource Include="frm_QTCongTac.resx">
+      <DependentUpon>frm_QTCongTac.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

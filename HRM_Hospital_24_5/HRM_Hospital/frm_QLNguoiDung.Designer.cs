@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.cbb_MANV = new System.Windows.Forms.ComboBox();
             this.tb_matkhau = new System.Windows.Forms.TextBox();
             this.tb_TDN = new DevExpress.XtraEditors.TextEdit();
             this.lb_QA = new DevExpress.XtraEditors.LabelControl();
@@ -41,7 +42,6 @@
             this.btn_Xoa = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Capnhat = new DevExpress.XtraEditors.SimpleButton();
             this.btn_Themmoi = new DevExpress.XtraEditors.SimpleButton();
-            this.tb_MaNV = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tb_TDN.Properties)).BeginInit();
@@ -53,7 +53,7 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.tb_MaNV);
+            this.panelControl1.Controls.Add(this.cbb_MANV);
             this.panelControl1.Controls.Add(this.tb_matkhau);
             this.panelControl1.Controls.Add(this.tb_TDN);
             this.panelControl1.Controls.Add(this.lb_QA);
@@ -65,6 +65,16 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(737, 104);
             this.panelControl1.TabIndex = 0;
+            // 
+            // cbb_MANV
+            // 
+            this.cbb_MANV.FormattingEnabled = true;
+            this.cbb_MANV.Items.AddRange(new object[] {
+            "(Nope)"});
+            this.cbb_MANV.Location = new System.Drawing.Point(509, 21);
+            this.cbb_MANV.Name = "cbb_MANV";
+            this.cbb_MANV.Size = new System.Drawing.Size(121, 21);
+            this.cbb_MANV.TabIndex = 8;
             // 
             // tb_matkhau
             // 
@@ -172,16 +182,6 @@
             this.btn_Themmoi.Text = "Thêm Mới";
             this.btn_Themmoi.Click += new System.EventHandler(this.btn_Themmoi_Click);
             // 
-            // tb_MaNV
-            // 
-            this.tb_MaNV.FormattingEnabled = true;
-            this.tb_MaNV.Items.AddRange(new object[] {
-            "(Nope)"});
-            this.tb_MaNV.Location = new System.Drawing.Point(509, 21);
-            this.tb_MaNV.Name = "tb_MaNV";
-            this.tb_MaNV.Size = new System.Drawing.Size(121, 21);
-            this.tb_MaNV.TabIndex = 8;
-            // 
             // frm_QLNguoiDung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -219,6 +219,6 @@
         private DevExpress.XtraEditors.SimpleButton btn_Themmoi;
         private System.Windows.Forms.TextBox tb_matkhau;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.ComboBox tb_MaNV;
+        private System.Windows.Forms.ComboBox cbb_MANV;
     }
 }

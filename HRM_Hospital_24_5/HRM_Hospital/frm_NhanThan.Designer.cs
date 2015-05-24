@@ -44,6 +44,7 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.tb_Quanhe = new DevExpress.XtraEditors.TextEdit();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lb_tennhanvien = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.tb_Congtac.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tb_Nghenghiep.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tb_Hoten.Properties)).BeginInit();
@@ -89,7 +90,7 @@
             // 
             // tb_Hoten
             // 
-            this.tb_Hoten.Location = new System.Drawing.Point(157, 15);
+            this.tb_Hoten.Location = new System.Drawing.Point(159, 50);
             this.tb_Hoten.Name = "tb_Hoten";
             this.tb_Hoten.Size = new System.Drawing.Size(169, 20);
             this.tb_Hoten.TabIndex = 0;
@@ -151,7 +152,7 @@
             // 
             // lb_Quanhe
             // 
-            this.lb_Quanhe.Location = new System.Drawing.Point(70, 53);
+            this.lb_Quanhe.Location = new System.Drawing.Point(79, 91);
             this.lb_Quanhe.Name = "lb_Quanhe";
             this.lb_Quanhe.Size = new System.Drawing.Size(49, 13);
             this.lb_Quanhe.TabIndex = 24;
@@ -159,7 +160,7 @@
             // 
             // lb_Hoten
             // 
-            this.lb_Hoten.Location = new System.Drawing.Point(70, 18);
+            this.lb_Hoten.Location = new System.Drawing.Point(72, 53);
             this.lb_Hoten.Name = "lb_Hoten";
             this.lb_Hoten.Size = new System.Drawing.Size(56, 13);
             this.lb_Hoten.TabIndex = 22;
@@ -179,6 +180,7 @@
             this.panelControl1.Controls.Add(this.lb_Nghenghiep);
             this.panelControl1.Controls.Add(this.lb_Ngaysinh);
             this.panelControl1.Controls.Add(this.lb_Quanhe);
+            this.panelControl1.Controls.Add(this.lb_tennhanvien);
             this.panelControl1.Controls.Add(this.lb_Hoten);
             this.panelControl1.Location = new System.Drawing.Point(20, 6);
             this.panelControl1.Name = "panelControl1";
@@ -187,7 +189,7 @@
             // 
             // tb_Quanhe
             // 
-            this.tb_Quanhe.Location = new System.Drawing.Point(157, 50);
+            this.tb_Quanhe.Location = new System.Drawing.Point(159, 85);
             this.tb_Quanhe.Name = "tb_Quanhe";
             this.tb_Quanhe.Size = new System.Drawing.Size(169, 20);
             this.tb_Quanhe.TabIndex = 2;
@@ -206,6 +208,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(737, 187);
             this.panel1.TabIndex = 4;
+            // 
+            // lb_tennhanvien
+            // 
+            this.lb_tennhanvien.Location = new System.Drawing.Point(16, 18);
+            this.lb_tennhanvien.Name = "lb_tennhanvien";
+            this.lb_tennhanvien.Size = new System.Drawing.Size(170, 13);
+            this.lb_tennhanvien.TabIndex = 22;
+            this.lb_tennhanvien.Text = "Khai báo nhân thân của nhân viên: ";
             // 
             // frm_NhanThan
             // 
@@ -248,5 +258,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private System.Windows.Forms.Panel panel1;
         private DevExpress.XtraEditors.TextEdit tb_Quanhe;
+        private DevExpress.XtraEditors.LabelControl lb_tennhanvien;
     }
 }

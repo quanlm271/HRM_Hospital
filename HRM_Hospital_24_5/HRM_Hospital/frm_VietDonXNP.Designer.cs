@@ -45,14 +45,14 @@
             this.tb_ngaylapdon = new DevExpress.XtraEditors.TextEdit();
             this.tb_songay = new DevExpress.XtraEditors.TextEdit();
             this.tb_ten = new DevExpress.XtraEditors.TextEdit();
-            this.tb_manv = new DevExpress.XtraEditors.TextEdit();
+            this.tb_MANV = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.tb_lydo = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tb_ngaylapdon.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tb_songay.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tb_ten.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_manv.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_MANV.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lb_HoTen
@@ -138,7 +138,7 @@
             this.panel1.Controls.Add(this.tb_ngaylapdon);
             this.panel1.Controls.Add(this.tb_songay);
             this.panel1.Controls.Add(this.tb_ten);
-            this.panel1.Controls.Add(this.tb_manv);
+            this.panel1.Controls.Add(this.tb_MANV);
             this.panel1.Controls.Add(this.btn_NopDon);
             this.panel1.Controls.Add(this.lb_SoNgayConLai);
             this.panel1.Controls.Add(this.lb_SoNgayDaNghi);
@@ -240,15 +240,15 @@
             this.tb_ten.Size = new System.Drawing.Size(174, 20);
             this.tb_ten.TabIndex = 78;
             // 
-            // tb_manv
+            // tb_MANV
             // 
-            this.tb_manv.Enabled = false;
-            this.tb_manv.Location = new System.Drawing.Point(109, 56);
-            this.tb_manv.Name = "tb_manv";
-            this.tb_manv.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_manv.Properties.Appearance.Options.UseFont = true;
-            this.tb_manv.Size = new System.Drawing.Size(174, 20);
-            this.tb_manv.TabIndex = 78;
+            this.tb_MANV.Enabled = false;
+            this.tb_MANV.Location = new System.Drawing.Point(109, 56);
+            this.tb_MANV.Name = "tb_MANV";
+            this.tb_MANV.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_MANV.Properties.Appearance.Options.UseFont = true;
+            this.tb_MANV.Size = new System.Drawing.Size(174, 20);
+            this.tb_MANV.TabIndex = 78;
             // 
             // labelControl1
             // 
@@ -283,7 +283,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tb_ngaylapdon.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tb_songay.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tb_ten.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_manv.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_MANV.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -299,7 +299,7 @@
         private DevExpress.XtraEditors.SimpleButton btn_NopDon;
         private System.Windows.Forms.Panel panel1;
         private DevExpress.XtraEditors.TextEdit tb_ten;
-        private DevExpress.XtraEditors.TextEdit tb_manv;
+        private DevExpress.XtraEditors.TextEdit tb_MANV;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private System.Windows.Forms.DateTimePicker date_denngay;
         private DevExpress.XtraEditors.LabelControl labelControl3;

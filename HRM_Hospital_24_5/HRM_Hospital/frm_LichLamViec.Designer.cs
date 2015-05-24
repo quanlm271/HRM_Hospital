@@ -28,59 +28,75 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.datePK_ngay = new System.Windows.Forms.DateTimePicker();
-            this.btn_xem = new DevExpress.XtraEditors.SimpleButton();
-            this.labelngaythangnam = new DevExpress.XtraEditors.LabelControl();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lb_thang = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // datePK_ngay
+            // monthCalendar1
             // 
-            this.datePK_ngay.AccessibleDescription = "";
-            this.datePK_ngay.Location = new System.Drawing.Point(79, 9);
-            this.datePK_ngay.Name = "datePK_ngay";
-            this.datePK_ngay.Size = new System.Drawing.Size(211, 21);
-            this.datePK_ngay.TabIndex = 16;
-            // 
-            // btn_xem
-            // 
-            this.btn_xem.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_xem.Appearance.Options.UseFont = true;
-            this.btn_xem.Location = new System.Drawing.Point(310, 8);
-            this.btn_xem.Name = "btn_xem";
-            this.btn_xem.Size = new System.Drawing.Size(71, 24);
-            this.btn_xem.TabIndex = 15;
-            this.btn_xem.Text = "Xem";
-            this.btn_xem.Click += new System.EventHandler(this.btn_xem_Click);
-            // 
-            // labelngaythangnam
-            // 
-            this.labelngaythangnam.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelngaythangnam.Location = new System.Drawing.Point(13, 13);
-            this.labelngaythangnam.Margin = new System.Windows.Forms.Padding(4);
-            this.labelngaythangnam.Name = "labelngaythangnam";
-            this.labelngaythangnam.Size = new System.Drawing.Size(59, 13);
-            this.labelngaythangnam.TabIndex = 14;
-            this.labelngaythangnam.Text = "Chọn ngày :";
+            this.monthCalendar1.CalendarDimensions = new System.Drawing.Size(3, 1);
+            this.monthCalendar1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.monthCalendar1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monthCalendar1.Location = new System.Drawing.Point(0, 0);
+            this.monthCalendar1.MaxSelectionCount = 1;
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.ShowWeekNumbers = true;
+            this.monthCalendar1.TabIndex = 20;
+            this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 52);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 208);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(739, 150);
-            this.dataGridView1.TabIndex = 17;
+            this.dataGridView1.Size = new System.Drawing.Size(764, 127);
+            this.dataGridView1.TabIndex = 21;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "(Nope)",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"});
+            this.comboBox1.Location = new System.Drawing.Point(69, 170);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(75, 21);
+            this.comboBox1.TabIndex = 22;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // lb_thang
+            // 
+            this.lb_thang.AutoSize = true;
+            this.lb_thang.Location = new System.Drawing.Point(22, 173);
+            this.lb_thang.Name = "lb_thang";
+            this.lb_thang.Size = new System.Drawing.Size(41, 13);
+            this.lb_thang.TabIndex = 23;
+            this.lb_thang.Text = "Tháng:";
             // 
             // frm_LichLamViec
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(764, 335);
+            this.Controls.Add(this.lb_thang);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.datePK_ngay);
-            this.Controls.Add(this.btn_xem);
-            this.Controls.Add(this.labelngaythangnam);
+            this.Controls.Add(this.monthCalendar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_LichLamViec";
             this.Text = "Lịch Làm Việc";
@@ -92,9 +108,9 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker datePK_ngay;
-        private DevExpress.XtraEditors.SimpleButton btn_xem;
-        private DevExpress.XtraEditors.LabelControl labelngaythangnam;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label lb_thang;
     }
 }
