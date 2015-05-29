@@ -52,11 +52,6 @@ namespace HRM_Hospital
 
         }
 
-        private void xtraTabPage2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void btn_ThongTinNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             tab_index++;
@@ -66,17 +61,6 @@ namespace HRM_Hospital
             tabpage.Text = "QL Thông Tin Nhân Viên";
             this.Add_TabPage(frm, tabpage);
         }
-
-        private void btn_QuanLyTienLuong_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            tab_index++;
-            frm_QLTienLuong frm = new frm_QLTienLuong();
-            frm.frm_main = this;
-            XtraTabPage tabpage = new XtraTabPage();
-            tabpage.Text = "QL Tiền Lương";
-            this.Add_TabPage(frm, tabpage);
-        }
-
         private void btn_LichLamViec_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             tab_index++;
@@ -95,6 +79,53 @@ namespace HRM_Hospital
             tabpage.Text = "Đơn Xin Nghỉ Phép";
             this.Add_TabPage(frm, tabpage);
         }
+
+        private void btn_DangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            int index = this.xtraTabControl1.TabPages.Count();
+            while (index-- > 0)
+                this.xtraTabControl1.TabPages.RemoveAt(index);
+            this.MANV = null;
+            this.ribbon_user.Visible = false;
+            this.ribbon_admin.Visible = false;
+            this.user = false;
+            this.admin = false;
+            this.btn_DangXuat.Enabled = false;
+            this.CallLoginForm();
+        }
+        private void btn_BangChamCong_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            tab_index++;
+            frm_BangCC frm = new frm_BangCC(this.MANV);
+            frm.admin = this.admin;
+            XtraTabPage tabpage = new XtraTabPage();
+            tabpage.Text = "Bảng Chấm Công";  
+            frm.tabpage = tabpage;
+            this.Add_TabPage(frm, tabpage);
+        }
+
+
+        private void btn_phongkhoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            tab_index++;
+            frm_PhongKhoa frm = new frm_PhongKhoa();
+            XtraTabPage tabpage = new XtraTabPage();
+            tabpage.Text = "Phòng Khoa";
+            this.Add_TabPage(frm, tabpage);
+        }
+
+
+        private void btn_qllich_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            tab_index++;
+            frm_QLLich frm = new frm_QLLich();
+            XtraTabPage tabpage = new XtraTabPage();
+            tabpage.Text = "QL Lịch NV";
+            frm.tabpage = tabpage;
+            this.Add_TabPage(frm, tabpage);
+        }
+
+
         public void Add_TabPage(Form frm, XtraTabPage tabpage)
         {
             frm.TopLevel = false;
@@ -104,6 +135,7 @@ namespace HRM_Hospital
             this.xtraTabControl1.SelectedTabPageIndex = tab_index;
             frm.Show();
         }
+
 
         public void frm_Main_Load(object sender, EventArgs e)
         {
@@ -121,18 +153,12 @@ namespace HRM_Hospital
             
         }
 
-        private void btn_DangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btn_QLDonXinNghiPhep_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            int index = this.xtraTabControl1.TabPages.Count();
-            while (index-- > 0)
-                this.xtraTabControl1.TabPages.RemoveAt(index);
-            this.MANV = null;
-            this.ribbon_user.Visible = false;
-            this.ribbon_admin.Visible = false;
-            this.user = false;
-            this.admin = false;
-            this.btn_DangXuat.Enabled = false;
-            this.CallLoginForm();
+
         }
+
+
+       
     }
 }

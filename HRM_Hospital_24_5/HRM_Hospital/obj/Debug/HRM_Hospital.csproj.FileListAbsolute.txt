@@ -61,7 +61,6 @@ I:\GIT\HRM_Hospital_24_5\HRM_Hospital\obj\Debug\HRM_Hospital.frm_LichLamViec.res
 I:\GIT\HRM_Hospital_24_5\HRM_Hospital\obj\Debug\HRM_Hospital.frm_NhanThan.resources
 I:\GIT\HRM_Hospital_24_5\HRM_Hospital\obj\Debug\HRM_Hospital.frm_PhongKhoa.resources
 I:\GIT\HRM_Hospital_24_5\HRM_Hospital\obj\Debug\HRM_Hospital.Properties.Resources.resources
-I:\GIT\HRM_Hospital_24_5\HRM_Hospital\obj\Debug\HRM_Hospital.frm_QLTienLuong.resources
 I:\GIT\HRM_Hospital_24_5\HRM_Hospital\obj\Debug\HRM_Hospital.frm_QLNguoiDung.resources
 I:\GIT\HRM_Hospital_24_5\HRM_Hospital\obj\Debug\HRM_Hospital.frm_QLNhanVien.resources
 I:\GIT\HRM_Hospital_24_5\HRM_Hospital\obj\Debug\HRM_Hospital.frm_VietDonXNP.resources
@@ -70,3 +69,6 @@ I:\GIT\HRM_Hospital_24_5\HRM_Hospital\obj\Debug\HRM_Hospital.exe.licenses
 I:\GIT\HRM_Hospital_24_5\HRM_Hospital\bin\Debug\HRM_Hospital.exe
 I:\GIT\HRM_Hospital_24_5\HRM_Hospital\bin\Debug\HRM_Hospital.pdb
 I:\GIT\HRM_Hospital_24_5\HRM_Hospital\obj\Debug\HRM_Hospital.frm_QTCongTac.resources
+I:\GIT\HRM_Hospital_24_5\HRM_Hospital\obj\Debug\HRM_Hospital.frm_BangCC.resources
+I:\GIT\HRM_Hospital_24_5\HRM_Hospital\obj\Debug\HRM_Hospital.frm_QLLICH.resources
+I:\GIT\HRM_Hospital_24_5\HRM_Hospital\obj\Debug\HRM_Hospital.mform.resources

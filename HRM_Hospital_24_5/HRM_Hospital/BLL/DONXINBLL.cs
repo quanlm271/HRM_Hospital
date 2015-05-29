@@ -12,7 +12,12 @@ namespace HRM_Hospital.BLL
 {
     class DONXINBLL: BLL
     {
-        public List<DONXIN> LayTatCa()
+        NGAYNGHIBLL bll_ngaynghi = new NGAYNGHIBLL();
+        private Boolean check_Empty()
+        {
+            return this.get_AllRecord().Count == 0;
+        }
+        public List<DONXIN> get_AllRecord()
         {
             return DB.DONXINs.ToList();
         }
@@ -20,20 +25,54 @@ namespace HRM_Hospital.BLL
         public string set_MADONXIN()
         {
             string str;
-            var DX = DB.DONXINs.ToList();
-            if (DX.Count>0)
+            var AllRecord = this.get_AllRecord();
+            if (!check_Empty())
             {
-                str = DX.Last().MADONXIN;
-                str = String.Concat(str.Where(char.IsDigit));
-                return "D" + (Int16.Parse(str) + 1);
+                int max = 0;
+                int index = 0;
+                foreach (DONXIN rc in AllRecord)
+                {
+                    str = String.Concat(rc.MADONXIN.Where(char.IsDigit));
+                    index = Int16.Parse(str);
+                    if (index > max)
+                        max = index;
+                }
+                return "DX" + (max + 1);
             }
-            return "D1";
+            return "DX1";
         }
         public List<DONXIN> get_DONXIN(string MANV)
         {
             return DB.DONXINs.Where(nv => nv.MANV == MANV).ToList();
         }
-        public void Them(string MANV, int SONGAY, string LYDO, DateTime TUNGAY, DateTime DENNGAY, DateTime NGAYLAPDON )
+
+        public List<string> get_OffDays(string MANV, int THANG)
+        {
+            List<string> list = new List<string>();
+            var DX = DB.DONXINs.Where(rc => rc.MANV == MANV 
+                && (rc.TUNGAY.Value.Month == THANG || rc.DENNGAY.Value.Month == THANG)
+                ).ToList();
+            foreach (DONXIN dx in DX)
+            {
+                if (dx.DUOCDUYET.Value)
+                {
+                    int dueday = dx.SONGAYNGHI.Value;
+                    int d = 0;
+                    while (d++ < dueday)
+                    {
+                        DateTime dt = dx.TUNGAY.Value.AddDays(d);
+                        if (!dt.DayOfWeek.Equals(DayOfWeek.Sunday)
+                            && !this.bll_ngaynghi.isOutDay(dt)
+                            && dt.Month == THANG)
+                            list.Add(dt.DayOfWeek + ": " + dt.Date.ToShortDateString());
+                        else
+                            dueday++;
+                    }
+                }
+            }
+            return list;
+        }
+        public void Insert(string MANV, int SONGAY, string LYDO, DateTime TUNGAY, DateTime DENNGAY, DateTime NGAYLAPDON )
         {
             try
             {
@@ -47,16 +86,16 @@ namespace HRM_Hospital.BLL
                 donxin.NGAYLAPDON = NGAYLAPDON;
                 DB.DONXINs.InsertOnSubmit(donxin);
                 DB.SubmitChanges();
-                MessageBox.Show("Thêm mới thông tin thành công.", "Thông báo.", MessageBoxButtons.OK, 
+                MessageBox.Show(msg.insert_success, "Thông báo.", MessageBoxButtons.OK, 
                     MessageBoxIcon.Information);
             }
             catch
             {
-                MessageBox.Show("Thêm mới thông tin thất bại.", "Thông báo.", MessageBoxButtons.OK, 
+                MessageBox.Show(msg.insert_fail, "Thông báo.", MessageBoxButtons.OK, 
                     MessageBoxIcon.Information);
             }
         }
-        public void Xoa(String MANV)
+        public void Delete(String MANV)
         {    
             try
             {
@@ -67,18 +106,18 @@ namespace HRM_Hospital.BLL
                     DB.DONXINs.DeleteOnSubmit(d);
                 DB.SubmitChanges();
                 if (!onMinifrm)
-                    MessageBox.Show("Xoá thông tin thành công.", "Thông báo.", MessageBoxButtons.OK,
+                    MessageBox.Show(msg.delete_success, "Thông báo.", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                 else
-                    this.Status += "\nXóa trong Bảng DONXINPHEP: THÀNH CÔNG";
+                    this.Status += "\nDONXIN: " + msg.delete_success;
             }
             catch
             {
                 if (!onMinifrm)
-                    MessageBox.Show("Xóa thông tin thất bại.", "Thông báo.", MessageBoxButtons.OK,
+                    MessageBox.Show(msg.delete_fail, "Thông báo.", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                 else
-                    this.Status += "\nXóa trong Bảng DONXINPHEP: THẤT BẠI";
+                    this.Status += "\nDONXIN: " + msg.delete_fail;
             }
         }
 

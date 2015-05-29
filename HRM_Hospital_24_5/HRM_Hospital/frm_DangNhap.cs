@@ -14,6 +14,7 @@ namespace HRM_Hospital
     {
         public frm_Main frmMain;
         TAIKHOANBLL bll_taikhoan = new TAIKHOANBLL();
+        MessageString msg = new MessageString();
         public DevExpress.XtraTab.XtraTabControl xtratabControl1;
         public frm_DangNhap()
         {
@@ -26,27 +27,34 @@ namespace HRM_Hospital
         private void btn_dangnhap_Click(object sender, EventArgs e)
         {
 
-            int result =  bll_taikhoan.KiemTra_DangNhap(this.tb_tendangnhap.Text, this.tb_matkhau.Text);
+            int result =  bll_taikhoan.check_Login(this.tb_tendangnhap.Text, this.tb_matkhau.Text);
             switch (result)
-            { 
+            {
+                case -1:
+                    this.frmMain.admin= true;
+                    this.frmMain.MANV = "";
+                    MessageBox.Show(msg.login_success, "Thông báo.", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    break;
                 case 0:
                     this.frmMain.user = true;
-                    this.frmMain.MANV = bll_taikhoan.LayMANV(this.tb_tendangnhap.Text);
-                    MessageBox.Show("Đăng nhập quyền user thành công", "Thông báo.", MessageBoxButtons.OK,
+                    this.frmMain.MANV = bll_taikhoan.get_MANV(this.tb_tendangnhap.Text);
+                    MessageBox.Show(msg.login_success, "Thông báo.", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     this.xtratabControl1.TabPages.RemoveAt(this.xtratabControl1.SelectedTabPageIndex);
                     break;
                 case 1:
                     this.frmMain.admin = true;
-                    this.frmMain.user = true;
-                    this.frmMain.MANV = bll_taikhoan.LayMANV(this.tb_tendangnhap.Text);
-                    MessageBox.Show("Đăng nhập quyền admin thành công", "Thông báo.", MessageBoxButtons.OK,
+                    this.frmMain.MANV = bll_taikhoan.get_MANV(this.tb_tendangnhap.Text);
+                    MessageBox.Show(msg.login_success, "Thông báo.", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     this.xtratabControl1.TabPages.RemoveAt(this.xtratabControl1.SelectedTabPageIndex);
                     break;
-                case -1:
-                    MessageBox.Show("Đăng nhập không thành công", "Thông báo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                case 2:
+                    MessageBox.Show(msg.login_fail, "Thông báo.", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                     break;
+               
             }
             this.frmMain.frm_Main_Load(null, e);
         }

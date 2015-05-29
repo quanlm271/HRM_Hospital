@@ -14,7 +14,6 @@ namespace HRM_Hospital
     public partial class frm_LichLamViec : DevExpress.XtraEditors.XtraForm
     {
         private string MANV;
-        Boolean ViewInMonth, ViewByDay;
         LICHBLL bll_lich = new LICHBLL();
         DateTime date = new DateTime();
         public frm_LichLamViec(string MANV)

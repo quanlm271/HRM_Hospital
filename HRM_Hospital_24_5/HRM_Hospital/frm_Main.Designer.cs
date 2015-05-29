@@ -1,6 +1,6 @@
 ﻿namespace HRM_Hospital
 {
-    partial class frm_Main
+    partial class frm_Main : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Main));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
@@ -46,7 +47,8 @@
             this.btn_DanhGiaNhanVien = new DevExpress.XtraBars.BarButtonItem();
             this.btn_BaoCao = new DevExpress.XtraBars.BarButtonItem();
             this.btn_DangXuat = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonMiniToolbar1 = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
+            this.btn_phongkhoa = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_qllich = new DevExpress.XtraBars.BarButtonItem();
             this.ribbon_TC = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -57,6 +59,7 @@
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonMiniToolbar1 = new DevExpress.XtraBars.Ribbon.RibbonMiniToolbar(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.SuspendLayout();
@@ -64,6 +67,7 @@
             // ribbonControl1
             // 
             this.ribbonControl1.ExpandCollapseItem.Id = 0;
+            this.ribbonControl1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
             this.barButtonItem1,
@@ -81,17 +85,18 @@
             this.btn_QLDonXinNghiPhep,
             this.btn_DanhGiaNhanVien,
             this.btn_BaoCao,
-            this.btn_DangXuat});
+            this.btn_DangXuat,
+            this.btn_phongkhoa,
+            this.btn_qllich});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 21;
-            this.ribbonControl1.MiniToolbars.Add(this.ribbonMiniToolbar1);
+            this.ribbonControl1.MaxItemId = 27;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbon_TC,
             this.ribbon_user,
             this.ribbon_admin});
             this.ribbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.MacOffice;
-            this.ribbonControl1.Size = new System.Drawing.Size(770, 131);
+            this.ribbonControl1.Size = new System.Drawing.Size(925, 131);
             // 
             // barButtonItem1
             // 
@@ -153,10 +158,11 @@
             this.btn_BangChamCong.Id = 11;
             this.btn_BangChamCong.LargeGlyph = global::HRM_Hospital.Properties.Resources.XemBangChamCong;
             this.btn_BangChamCong.Name = "btn_BangChamCong";
+            this.btn_BangChamCong.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_BangChamCong_ItemClick);
             // 
             // btn_QTNguoiDung
             // 
-            this.btn_QTNguoiDung.Caption = "Quản Trị Người Dùng";
+            this.btn_QTNguoiDung.Caption = "QL Người Dùng";
             this.btn_QTNguoiDung.Id = 12;
             this.btn_QTNguoiDung.LargeGlyph = global::HRM_Hospital.Properties.Resources.QuanTriNguoiDung;
             this.btn_QTNguoiDung.Name = "btn_QTNguoiDung";
@@ -164,7 +170,7 @@
             // 
             // btn_ThongTinNV
             // 
-            this.btn_ThongTinNV.Caption = "Thông Tin Nhân Viên";
+            this.btn_ThongTinNV.Caption = "QL Nhân Viên";
             this.btn_ThongTinNV.Id = 13;
             this.btn_ThongTinNV.LargeGlyph = global::HRM_Hospital.Properties.Resources.QuanLiThongTinNhanVien;
             this.btn_ThongTinNV.Name = "btn_ThongTinNV";
@@ -172,19 +178,19 @@
             // 
             // btn_QuanLyTienLuong
             // 
-            this.btn_QuanLyTienLuong.Caption = "Quản Lý Tiền Lương";
+            this.btn_QuanLyTienLuong.Caption = "QL Tiền Lương";
             this.btn_QuanLyTienLuong.Id = 14;
             this.btn_QuanLyTienLuong.LargeGlyph = global::HRM_Hospital.Properties.Resources.QuanLiTienLuong;
             this.btn_QuanLyTienLuong.Name = "btn_QuanLyTienLuong";
-            this.btn_QuanLyTienLuong.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_QuanLyTienLuong_ItemClick);
             // 
             // btn_QLDonXinNghiPhep
             // 
-            this.btn_QLDonXinNghiPhep.Caption = "Quản Lý Đơn Xin Nghỉ Phép";
+            this.btn_QLDonXinNghiPhep.Caption = "QL Đơn Xin Nghỉ Phép";
             this.btn_QLDonXinNghiPhep.Id = 15;
             this.btn_QLDonXinNghiPhep.LargeGlyph = global::HRM_Hospital.Properties.Resources.DonXinNghiViec;
             this.btn_QLDonXinNghiPhep.Name = "btn_QLDonXinNghiPhep";
             this.btn_QLDonXinNghiPhep.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btn_QLDonXinNghiPhep.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_QLDonXinNghiPhep_ItemClick);
             // 
             // btn_DanhGiaNhanVien
             // 
@@ -207,6 +213,24 @@
             this.btn_DangXuat.LargeGlyph = global::HRM_Hospital.Properties.Resources.DangXuat;
             this.btn_DangXuat.Name = "btn_DangXuat";
             this.btn_DangXuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_DangXuat_ItemClick);
+            // 
+            // btn_phongkhoa
+            // 
+            this.btn_phongkhoa.Caption = "Phòng Khoa";
+            this.btn_phongkhoa.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.btn_phongkhoa.Id = 25;
+            this.btn_phongkhoa.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btn_phongkhoa.LargeGlyph")));
+            this.btn_phongkhoa.Name = "btn_phongkhoa";
+            this.btn_phongkhoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_phongkhoa_ItemClick);
+            // 
+            // btn_qllich
+            // 
+            this.btn_qllich.Caption = "QL Lịch NV";
+            this.btn_qllich.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.btn_qllich.Id = 26;
+            this.btn_qllich.LargeGlyph = global::HRM_Hospital.Properties.Resources.QuanLyLichLamViec1;
+            this.btn_qllich.Name = "btn_qllich";
+            this.btn_qllich.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_qllich_ItemClick);
             // 
             // ribbon_TC
             // 
@@ -267,18 +291,23 @@
             this.ribbonPageGroup3.ItemLinks.Add(this.btn_QuanLyTienLuong);
             this.ribbonPageGroup3.ItemLinks.Add(this.btn_QLDonXinNghiPhep);
             this.ribbonPageGroup3.ItemLinks.Add(this.btn_DanhGiaNhanVien);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btn_qllich);
             this.ribbonPageGroup3.ItemLinks.Add(this.btn_BaoCao);
+            this.ribbonPageGroup3.ItemLinks.Add(this.btn_phongkhoa);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Tác Vụ";
             // 
             // xtraTabControl1
             // 
+            this.xtraTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.xtraTabControl1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InActiveTabPageAndTabControlHeader;
-            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControl1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xtraTabControl1.HeaderButtons = DevExpress.XtraTab.TabButtons.None;
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 131);
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.Size = new System.Drawing.Size(770, 364);
+            this.xtraTabControl1.Size = new System.Drawing.Size(925, 435);
             this.xtraTabControl1.TabIndex = 1;
             this.xtraTabControl1.CloseButtonClick += new System.EventHandler(this.xtraTabControl1_CloseButtonClick);
             // 
@@ -291,15 +320,20 @@
             // frm_Main
             // 
             this.AllowFormGlass = DevExpress.Utils.DefaultBoolean.False;
+            this.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(770, 495);
+            this.ClientSize = new System.Drawing.Size(925, 566);
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.ribbonControl1);
+            this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frm_Main";
             this.Ribbon = this.ribbonControl1;
             this.Text = "Phần mềm quản lý nhân sự ";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frm_Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
@@ -335,8 +369,10 @@
         private DevExpress.XtraBars.BarButtonItem btn_DangXuat;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
-        private DevExpress.XtraBars.Ribbon.RibbonMiniToolbar ribbonMiniToolbar1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
+        private DevExpress.XtraBars.BarButtonItem btn_phongkhoa;
+        private DevExpress.XtraBars.Ribbon.RibbonMiniToolbar ribbonMiniToolbar1;
+        private DevExpress.XtraBars.BarButtonItem btn_qllich;
     }
 }
 

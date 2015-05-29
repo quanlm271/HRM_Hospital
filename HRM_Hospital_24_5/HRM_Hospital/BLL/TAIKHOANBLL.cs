@@ -13,10 +13,11 @@ namespace HRM_Hospital.BLL
     class TAIKHOANBLL:BLL
     {
       
-        public List<TAIKHOAN> LayTatCa()
+        public List<TAIKHOAN> get_AllRecord()
         {
             return DB.TAIKHOANs.ToList();
         }
+
         public bool KiemTraMaTrung(string TenDN)
         {
             foreach (string nv in (from record in DB.TAIKHOANs select record.TENDANGNHAP))
@@ -29,11 +30,11 @@ namespace HRM_Hospital.BLL
             return false;
         }
 
-        public bool KiemTraNV(string MANV)
+        public bool KiemTraNV(string MaNV)
         {
             foreach (string nv in (from record in DB.TAIKHOANs select record.MANV))
             {
-                if ((nv.ToLower().Contains(MANV.ToLower()) == true) && (nv.Trim().Length == MANV.Trim().Length))
+                if ((nv.ToLower().Contains(MaNV.ToLower()) == true) && (nv.Trim().Length == MaNV.Trim().Length))
                 {
                     return true;
                 }
@@ -42,59 +43,51 @@ namespace HRM_Hospital.BLL
         }
 
         //For UM form to load MANV of all user
-        public List<String> LayMANV()
+        public List<String> get_MANV()
         {
-            try
-            {
-                var taikhoan = (from Table in DB.NHANVIENs
-                               select (Table.MANV)).ToList();
-                return taikhoan;
-            }
-            catch
-            {
-                MessageBox.Show("Error!", "Thông báo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            return null;
+            var taikhoan = (from Table in DB.NHANVIENs
+                            select (Table.MANV)).ToList();
+            return taikhoan;
         }
 
         //For Login form to load user's MANV 
-        public string LayMANV(string TENDANGNHAP)
+        public string get_MANV(string TENDANGNHAP)
         {
-            try
-            {
-                var taikhoan = DB.TAIKHOANs.Where(tk => tk.TENDANGNHAP == TENDANGNHAP).FirstOrDefault();
-                return taikhoan.MANV;
-            }
-            catch
-            {
-                MessageBox.Show("Error!", "Thông báo.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            return "";
+            var taikhoan = DB.TAIKHOANs.Where(tk => tk.TENDANGNHAP == TENDANGNHAP).FirstOrDefault();
+            return taikhoan.MANV;
         }
 
-        public int KiemTra_DangNhap(string TENDANGNHAP, string MATKHAU)
+        public int check_Login(string TENDANGNHAP, string MATKHAU)
         {
             try
             {
-                var taikhoan = DB.TAIKHOANs.Where(tk => tk.TENDANGNHAP == TENDANGNHAP 
-                    && tk.MATKHAU == MATKHAU).FirstOrDefault();
-                if(taikhoan!=null)
+                if (TENDANGNHAP =="root") //is root
                 {
-                    if (taikhoan.QUYENTRUYCAP == true) //la admin
-                        return 1;
-                    else
-                        return 0;
+                    if (MATKHAU == "123456")
+                        return -1;
+                }
+                else
+                {
+                    var taikhoan = DB.TAIKHOANs.Where(tk => tk.TENDANGNHAP == TENDANGNHAP
+                        && tk.MATKHAU == MATKHAU).FirstOrDefault();
+                    if (taikhoan != null)
+                    {
+                        if (taikhoan.QUYENTRUYCAP == true) //is admin
+                            return 1;
+                        else
+                            return 0;
+                    }
                 }
             }
             catch
             {
-                MessageBox.Show("Kiểm tra đăng nhập thất bại.", "Thông báo.", MessageBoxButtons.OK, 
+                MessageBox.Show(msg.check_login_fail, "Thông báo.", MessageBoxButtons.OK, 
                     MessageBoxIcon.Information);
             }
-            return -1;
+            return 2;
         }
 
-        public void Them(string TENDANGNHAP, string MANV, string MATKHAU, bool QUYENTRUYCAP)
+        public void Insert(string TENDANGNHAP, string MANV, string MATKHAU, bool QUYENTRUYCAP)
         {
             try
             {
@@ -105,18 +98,18 @@ namespace HRM_Hospital.BLL
                 taikhoan.QUYENTRUYCAP = QUYENTRUYCAP;
                 DB.TAIKHOANs.InsertOnSubmit(taikhoan);
                 DB.SubmitChanges();
-                MessageBox.Show("Thêm mới thông tin thành công.", "Thông báo.", MessageBoxButtons.OK,
+                MessageBox.Show(msg.insert_success, "Thông báo.", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
             catch
             {
-                MessageBox.Show("Thêm mới thông tin thất bại.", "Thông báo.", MessageBoxButtons.OK, 
+                MessageBox.Show(msg.insert_fail, "Thông báo.", MessageBoxButtons.OK, 
                     MessageBoxIcon.Information);
             }
             
         }
 
-        public void Capnhat(string TENDANGNHAP, string MANV, string MATKHAU, bool QUYENTRUYCAP)
+        public void Update(string TENDANGNHAP, string MANV, string MATKHAU, bool QUYENTRUYCAP)
         {
             try
             {
@@ -124,18 +117,18 @@ namespace HRM_Hospital.BLL
                 taikhoan.MATKHAU = MATKHAU;
                 taikhoan.QUYENTRUYCAP = QUYENTRUYCAP;
                 DB.SubmitChanges();
-                MessageBox.Show("Cập nhật thông tin thành công.", "Thông báo.", MessageBoxButtons.OK, 
+                MessageBox.Show(msg.update_success, "Thông báo.", MessageBoxButtons.OK, 
                     MessageBoxIcon.Information);
             }
             catch
             {
-                MessageBox.Show("Cập nhật thông tin thất bại.", "Thông báo.", MessageBoxButtons.OK, 
+                MessageBox.Show(msg.update_fail, "Thông báo.", MessageBoxButtons.OK, 
                     MessageBoxIcon.Information);
             }
 
         }
 
-        public void Xoa(string MANV)
+        public void Delete(string MANV)
         {
             try
             {
@@ -145,20 +138,20 @@ namespace HRM_Hospital.BLL
                     DB.TAIKHOANs.DeleteOnSubmit(taikhoan);
                     DB.SubmitChanges();
                     if (!onMinifrm)
-                        MessageBox.Show("Xóa thông tin thành công.", "Thông báo.", MessageBoxButtons.OK,
+                        MessageBox.Show(msg.delete_success, "Thông báo.", MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
                     else
-                        this.Status += "\nXóa trong Bảng TAIKHOAN: THÀNH CÔNG";
+                        this.Status += "\nTAIKHOAN: " + msg.delete_success;
                 }
                    
             }
             catch
             {
                 if (!onMinifrm)
-                    MessageBox.Show("Thêm mới thông tin thất bại.", "Thông báo.", MessageBoxButtons.OK,
+                    MessageBox.Show(msg.delete_fail, "Thông báo.", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                 else
-                    this.Status += "\nXóa trong Bảng TAIKHOAN: THẤT BẠI";
+                    this.Status += "\nTAIKHOAN: " + msg.delete_fail;
             }
         }
     }

@@ -14,7 +14,7 @@ namespace HRM_Hospital.BLL
         {
             return DB.NHANVIENs.Where(nv => nv.MANV == MANV).Select(nv => nv.HOTENNV).ToString();
         }
-        public void Xoa(string MANV)
+        public void Delete(string MANV)
         {
             try
             {
@@ -23,18 +23,18 @@ namespace HRM_Hospital.BLL
                     DB.LUONGs.DeleteOnSubmit(luo);
                 DB.SubmitChanges();
                 if (!onMinifrm)
-                    MessageBox.Show("Xóa thông tin thành công.", "Thông báo.", MessageBoxButtons.OK,
+                    MessageBox.Show(msg.delete_success, "Thông báo.", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                 else
-                    this.Status += "\nXóa trong Bảng LUONG: THÀNH CÔNG";
+                    this.Status += "\nLUONG: " + msg.delete_success;
             }
             catch
             {
                 if (!onMinifrm)
-                    MessageBox.Show("Xóa thông tin thất bại.", "Thông báo.", MessageBoxButtons.OK,
+                    MessageBox.Show(msg.delete_fail, "Thông báo.", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                 else
-                    this.Status += "\nXóa trong Bảng LUONG: THẤT BẠI";
+                    this.Status += "\nLUONG: " + msg.delete_fail;
             }
         }
     }

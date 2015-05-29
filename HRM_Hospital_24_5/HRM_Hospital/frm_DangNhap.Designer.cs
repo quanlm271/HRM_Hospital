@@ -68,7 +68,7 @@
             // 
             // tb_tendangnhap
             // 
-            this.tb_tendangnhap.EditValue = "ntqcuong";
+            this.tb_tendangnhap.EditValue = "root";
             this.tb_tendangnhap.Location = new System.Drawing.Point(97, 69);
             this.tb_tendangnhap.Name = "tb_tendangnhap";
             this.tb_tendangnhap.Properties.Appearance.BackColor = System.Drawing.Color.GhostWhite;
@@ -157,6 +157,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(764, 335);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labelControl1);

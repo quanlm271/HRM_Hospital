@@ -66,6 +66,7 @@
     <Compile Include="BLL\DONXINBLL.cs" />
     <Compile Include="BLL\LICHBLL.cs" />
     <Compile Include="BLL\LUONGBLL.cs" />
+    <Compile Include="BLL\NGAYNGHIBLL.cs" />
     <Compile Include="BLL\NHANVIENBLL.cs" />
     <Compile Include="BLL\PHONGKHOABLL.cs" />
     <Compile Include="BLL\QTCONGTACBLL.cs" />
@@ -77,6 +78,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QLNS.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="frm_QLLich.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_QLLich.Designer.cs">
+      <DependentUpon>frm_QLLich.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_BangCC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_BangCC.Designer.cs">
+      <DependentUpon>frm_BangCC.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_Main.cs">
       <SubType>Form</SubType>
@@ -114,14 +127,15 @@
     <Compile Include="frm_QTCongTac.Designer.cs">
       <DependentUpon>frm_QTCongTac.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="frm_QLTienLuong.cs">
+    <Compile Include="MessageString.cs" />
+    <Compile Include="mform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_QLTienLuong.Designer.cs">
-      <DependentUpon>frm_QLTienLuong.cs</DependentUpon>
+    <Compile Include="mform.Designer.cs">
+      <DependentUpon>mform.cs</DependentUpon>
     </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="frm_QLNguoiDung.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +158,12 @@
     <None Include="DAL\QLNS.dbml.layout">
       <DependentUpon>QLNS.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="frm_QLLich.resx">
+      <DependentUpon>frm_QLLich.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_BangCC.resx">
+      <DependentUpon>frm_BangCC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_Main.resx">
       <DependentUpon>frm_Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -162,6 +182,9 @@
     <EmbeddedResource Include="frm_QTCongTac.resx">
       <DependentUpon>frm_QTCongTac.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="mform.resx">
+      <DependentUpon>mform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -173,9 +196,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="frm_QLTienLuong.resx">
-      <DependentUpon>frm_QLTienLuong.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frm_QLNguoiDung.resx">
       <DependentUpon>frm_QLNguoiDung.cs</DependentUpon>
     </EmbeddedResource>

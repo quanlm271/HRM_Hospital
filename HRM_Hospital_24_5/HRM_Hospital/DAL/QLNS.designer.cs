@@ -33,9 +33,9 @@ namespace HRM_Hospital.DAL
     partial void InsertBANGCHAMCONG(BANGCHAMCONG instance);
     partial void UpdateBANGCHAMCONG(BANGCHAMCONG instance);
     partial void DeleteBANGCHAMCONG(BANGCHAMCONG instance);
-    partial void InsertTHANNHAN(THANNHAN instance);
-    partial void UpdateTHANNHAN(THANNHAN instance);
-    partial void DeleteTHANNHAN(THANNHAN instance);
+    partial void InsertTRINHDONGHIEPVU(TRINHDONGHIEPVU instance);
+    partial void UpdateTRINHDONGHIEPVU(TRINHDONGHIEPVU instance);
+    partial void DeleteTRINHDONGHIEPVU(TRINHDONGHIEPVU instance);
     partial void InsertCOTN(COTN instance);
     partial void UpdateCOTN(COTN instance);
     partial void DeleteCOTN(COTN instance);
@@ -48,6 +48,9 @@ namespace HRM_Hospital.DAL
     partial void InsertLUONG(LUONG instance);
     partial void UpdateLUONG(LUONG instance);
     partial void DeleteLUONG(LUONG instance);
+    partial void InsertNGAYNGHI(NGAYNGHI instance);
+    partial void UpdateNGAYNGHI(NGAYNGHI instance);
+    partial void DeleteNGAYNGHI(NGAYNGHI instance);
     partial void InsertNHANVIEN(NHANVIEN instance);
     partial void UpdateNHANVIEN(NHANVIEN instance);
     partial void DeleteNHANVIEN(NHANVIEN instance);
@@ -63,9 +66,9 @@ namespace HRM_Hospital.DAL
     partial void InsertTAIKHOAN(TAIKHOAN instance);
     partial void UpdateTAIKHOAN(TAIKHOAN instance);
     partial void DeleteTAIKHOAN(TAIKHOAN instance);
-    partial void InsertTRINHDONGHIEPVU(TRINHDONGHIEPVU instance);
-    partial void UpdateTRINHDONGHIEPVU(TRINHDONGHIEPVU instance);
-    partial void DeleteTRINHDONGHIEPVU(TRINHDONGHIEPVU instance);
+    partial void InsertTHANNHAN(THANNHAN instance);
+    partial void UpdateTHANNHAN(THANNHAN instance);
+    partial void DeleteTHANNHAN(THANNHAN instance);
     #endregion
 		
 		public QLNSDataContext() : 
@@ -106,11 +109,11 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
-		public System.Data.Linq.Table<THANNHAN> THANNHANs
+		public System.Data.Linq.Table<TRINHDONGHIEPVU> TRINHDONGHIEPVUs
 		{
 			get
 			{
-				return this.GetTable<THANNHAN>();
+				return this.GetTable<TRINHDONGHIEPVU>();
 			}
 		}
 		
@@ -143,6 +146,14 @@ namespace HRM_Hospital.DAL
 			get
 			{
 				return this.GetTable<LUONG>();
+			}
+		}
+		
+		public System.Data.Linq.Table<NGAYNGHI> NGAYNGHIs
+		{
+			get
+			{
+				return this.GetTable<NGAYNGHI>();
 			}
 		}
 		
@@ -186,11 +197,11 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
-		public System.Data.Linq.Table<TRINHDONGHIEPVU> TRINHDONGHIEPVUs
+		public System.Data.Linq.Table<THANNHAN> THANNHANs
 		{
 			get
 			{
-				return this.GetTable<TRINHDONGHIEPVU>();
+				return this.GetTable<THANNHAN>();
 			}
 		}
 	}
@@ -234,7 +245,7 @@ namespace HRM_Hospital.DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MA_BANGCC", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MA_BANGCC", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string MA_BANGCC
 		{
 			get
@@ -274,7 +285,7 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAPHG", DbType="VarChar(4)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAPHG", DbType="VarChar(10)")]
 		public string MAPHG
 		{
 			get
@@ -398,227 +409,25 @@ namespace HRM_Hospital.DAL
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.THANNHAN")]
-	public partial class THANNHAN : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TRINHDONGHIEPVU")]
+	public partial class TRINHDONGHIEPVU : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _MATN;
+		private string _MATDNV;
 		
-		private string _HOTENTN;
+		private string _TENTRUONG;
 		
-		private System.Nullable<System.DateTime> _NAMSINH;
+		private string _TENLOPHOCNV;
 		
-		private string _QUANHE;
+		private System.Nullable<System.DateTime> _THOIGIANHOCNV;
 		
-		private string _NGHENGHIEP;
+		private string _HINHTHUCHOCNV;
 		
-		private string _DVCONGTAC;
-		
-		private EntitySet<COTN> _COTNs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMATNChanging(string value);
-    partial void OnMATNChanged();
-    partial void OnHOTENTNChanging(string value);
-    partial void OnHOTENTNChanged();
-    partial void OnNAMSINHChanging(System.Nullable<System.DateTime> value);
-    partial void OnNAMSINHChanged();
-    partial void OnQUANHEChanging(string value);
-    partial void OnQUANHEChanged();
-    partial void OnNGHENGHIEPChanging(string value);
-    partial void OnNGHENGHIEPChanged();
-    partial void OnDVCONGTACChanging(string value);
-    partial void OnDVCONGTACChanged();
-    #endregion
-		
-		public THANNHAN()
-		{
-			this._COTNs = new EntitySet<COTN>(new Action<COTN>(this.attach_COTNs), new Action<COTN>(this.detach_COTNs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MATN", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string MATN
-		{
-			get
-			{
-				return this._MATN;
-			}
-			set
-			{
-				if ((this._MATN != value))
-				{
-					this.OnMATNChanging(value);
-					this.SendPropertyChanging();
-					this._MATN = value;
-					this.SendPropertyChanged("MATN");
-					this.OnMATNChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HOTENTN", DbType="Char(50)")]
-		public string HOTENTN
-		{
-			get
-			{
-				return this._HOTENTN;
-			}
-			set
-			{
-				if ((this._HOTENTN != value))
-				{
-					this.OnHOTENTNChanging(value);
-					this.SendPropertyChanging();
-					this._HOTENTN = value;
-					this.SendPropertyChanged("HOTENTN");
-					this.OnHOTENTNChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NAMSINH", DbType="SmallDateTime")]
-		public System.Nullable<System.DateTime> NAMSINH
-		{
-			get
-			{
-				return this._NAMSINH;
-			}
-			set
-			{
-				if ((this._NAMSINH != value))
-				{
-					this.OnNAMSINHChanging(value);
-					this.SendPropertyChanging();
-					this._NAMSINH = value;
-					this.SendPropertyChanged("NAMSINH");
-					this.OnNAMSINHChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QUANHE", DbType="Char(20)")]
-		public string QUANHE
-		{
-			get
-			{
-				return this._QUANHE;
-			}
-			set
-			{
-				if ((this._QUANHE != value))
-				{
-					this.OnQUANHEChanging(value);
-					this.SendPropertyChanging();
-					this._QUANHE = value;
-					this.SendPropertyChanged("QUANHE");
-					this.OnQUANHEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NGHENGHIEP", DbType="Char(50)")]
-		public string NGHENGHIEP
-		{
-			get
-			{
-				return this._NGHENGHIEP;
-			}
-			set
-			{
-				if ((this._NGHENGHIEP != value))
-				{
-					this.OnNGHENGHIEPChanging(value);
-					this.SendPropertyChanging();
-					this._NGHENGHIEP = value;
-					this.SendPropertyChanged("NGHENGHIEP");
-					this.OnNGHENGHIEPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DVCONGTAC", DbType="Char(50)")]
-		public string DVCONGTAC
-		{
-			get
-			{
-				return this._DVCONGTAC;
-			}
-			set
-			{
-				if ((this._DVCONGTAC != value))
-				{
-					this.OnDVCONGTACChanging(value);
-					this.SendPropertyChanging();
-					this._DVCONGTAC = value;
-					this.SendPropertyChanged("DVCONGTAC");
-					this.OnDVCONGTACChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="THANNHAN_COTN", Storage="_COTNs", ThisKey="MATN", OtherKey="MATN")]
-		public EntitySet<COTN> COTNs
-		{
-			get
-			{
-				return this._COTNs;
-			}
-			set
-			{
-				this._COTNs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_COTNs(COTN entity)
-		{
-			this.SendPropertyChanging();
-			entity.THANNHAN = this;
-		}
-		
-		private void detach_COTNs(COTN entity)
-		{
-			this.SendPropertyChanging();
-			entity.THANNHAN = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.COTN")]
-	public partial class COTN : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		private string _CHUNGNHAN;
 		
 		private string _MANV;
-		
-		private string _MATN;
-		
-		private EntityRef<THANNHAN> _THANNHAN;
 		
 		private EntityRef<NHANVIEN> _NHANVIEN;
 		
@@ -626,20 +435,149 @@ namespace HRM_Hospital.DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnMATDNVChanging(string value);
+    partial void OnMATDNVChanged();
+    partial void OnTENTRUONGChanging(string value);
+    partial void OnTENTRUONGChanged();
+    partial void OnTENLOPHOCNVChanging(string value);
+    partial void OnTENLOPHOCNVChanged();
+    partial void OnTHOIGIANHOCNVChanging(System.Nullable<System.DateTime> value);
+    partial void OnTHOIGIANHOCNVChanged();
+    partial void OnHINHTHUCHOCNVChanging(string value);
+    partial void OnHINHTHUCHOCNVChanged();
+    partial void OnCHUNGNHANChanging(string value);
+    partial void OnCHUNGNHANChanged();
     partial void OnMANVChanging(string value);
     partial void OnMANVChanged();
-    partial void OnMATNChanging(string value);
-    partial void OnMATNChanged();
     #endregion
 		
-		public COTN()
+		public TRINHDONGHIEPVU()
 		{
-			this._THANNHAN = default(EntityRef<THANNHAN>);
 			this._NHANVIEN = default(EntityRef<NHANVIEN>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MATDNV", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MATDNV
+		{
+			get
+			{
+				return this._MATDNV;
+			}
+			set
+			{
+				if ((this._MATDNV != value))
+				{
+					this.OnMATDNVChanging(value);
+					this.SendPropertyChanging();
+					this._MATDNV = value;
+					this.SendPropertyChanged("MATDNV");
+					this.OnMATDNVChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENTRUONG", DbType="Char(50)")]
+		public string TENTRUONG
+		{
+			get
+			{
+				return this._TENTRUONG;
+			}
+			set
+			{
+				if ((this._TENTRUONG != value))
+				{
+					this.OnTENTRUONGChanging(value);
+					this.SendPropertyChanging();
+					this._TENTRUONG = value;
+					this.SendPropertyChanged("TENTRUONG");
+					this.OnTENTRUONGChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENLOPHOCNV", DbType="Char(50)")]
+		public string TENLOPHOCNV
+		{
+			get
+			{
+				return this._TENLOPHOCNV;
+			}
+			set
+			{
+				if ((this._TENLOPHOCNV != value))
+				{
+					this.OnTENLOPHOCNVChanging(value);
+					this.SendPropertyChanging();
+					this._TENLOPHOCNV = value;
+					this.SendPropertyChanged("TENLOPHOCNV");
+					this.OnTENLOPHOCNVChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_THOIGIANHOCNV", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> THOIGIANHOCNV
+		{
+			get
+			{
+				return this._THOIGIANHOCNV;
+			}
+			set
+			{
+				if ((this._THOIGIANHOCNV != value))
+				{
+					this.OnTHOIGIANHOCNVChanging(value);
+					this.SendPropertyChanging();
+					this._THOIGIANHOCNV = value;
+					this.SendPropertyChanged("THOIGIANHOCNV");
+					this.OnTHOIGIANHOCNVChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HINHTHUCHOCNV", DbType="Char(30)")]
+		public string HINHTHUCHOCNV
+		{
+			get
+			{
+				return this._HINHTHUCHOCNV;
+			}
+			set
+			{
+				if ((this._HINHTHUCHOCNV != value))
+				{
+					this.OnHINHTHUCHOCNVChanging(value);
+					this.SendPropertyChanging();
+					this._HINHTHUCHOCNV = value;
+					this.SendPropertyChanged("HINHTHUCHOCNV");
+					this.OnHINHTHUCHOCNVChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CHUNGNHAN", DbType="Char(50)")]
+		public string CHUNGNHAN
+		{
+			get
+			{
+				return this._CHUNGNHAN;
+			}
+			set
+			{
+				if ((this._CHUNGNHAN != value))
+				{
+					this.OnCHUNGNHANChanging(value);
+					this.SendPropertyChanging();
+					this._CHUNGNHAN = value;
+					this.SendPropertyChanged("CHUNGNHAN");
+					this.OnCHUNGNHANChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(10)")]
 		public string MANV
 		{
 			get
@@ -663,7 +601,117 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MATN", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHANVIEN_TRINHDONGHIEPVU", Storage="_NHANVIEN", ThisKey="MANV", OtherKey="MANV", IsForeignKey=true)]
+		public NHANVIEN NHANVIEN
+		{
+			get
+			{
+				return this._NHANVIEN.Entity;
+			}
+			set
+			{
+				NHANVIEN previousValue = this._NHANVIEN.Entity;
+				if (((previousValue != value) 
+							|| (this._NHANVIEN.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._NHANVIEN.Entity = null;
+						previousValue.TRINHDONGHIEPVUs.Remove(this);
+					}
+					this._NHANVIEN.Entity = value;
+					if ((value != null))
+					{
+						value.TRINHDONGHIEPVUs.Add(this);
+						this._MANV = value.MANV;
+					}
+					else
+					{
+						this._MANV = default(string);
+					}
+					this.SendPropertyChanged("NHANVIEN");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.COTN")]
+	public partial class COTN : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _MANV;
+		
+		private string _MATN;
+		
+		private EntityRef<NHANVIEN> _NHANVIEN;
+		
+		private EntityRef<THANNHAN> _THANNHAN;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMANVChanging(string value);
+    partial void OnMANVChanged();
+    partial void OnMATNChanging(string value);
+    partial void OnMATNChanged();
+    #endregion
+		
+		public COTN()
+		{
+			this._NHANVIEN = default(EntityRef<NHANVIEN>);
+			this._THANNHAN = default(EntityRef<THANNHAN>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MANV
+		{
+			get
+			{
+				return this._MANV;
+			}
+			set
+			{
+				if ((this._MANV != value))
+				{
+					if (this._NHANVIEN.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMANVChanging(value);
+					this.SendPropertyChanging();
+					this._MANV = value;
+					this.SendPropertyChanged("MANV");
+					this.OnMANVChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MATN", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string MATN
 		{
 			get
@@ -683,40 +731,6 @@ namespace HRM_Hospital.DAL
 					this._MATN = value;
 					this.SendPropertyChanged("MATN");
 					this.OnMATNChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="THANNHAN_COTN", Storage="_THANNHAN", ThisKey="MATN", OtherKey="MATN", IsForeignKey=true)]
-		public THANNHAN THANNHAN
-		{
-			get
-			{
-				return this._THANNHAN.Entity;
-			}
-			set
-			{
-				THANNHAN previousValue = this._THANNHAN.Entity;
-				if (((previousValue != value) 
-							|| (this._THANNHAN.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._THANNHAN.Entity = null;
-						previousValue.COTNs.Remove(this);
-					}
-					this._THANNHAN.Entity = value;
-					if ((value != null))
-					{
-						value.COTNs.Add(this);
-						this._MATN = value.MATN;
-					}
-					else
-					{
-						this._MATN = default(string);
-					}
-					this.SendPropertyChanged("THANNHAN");
 				}
 			}
 		}
@@ -751,6 +765,40 @@ namespace HRM_Hospital.DAL
 						this._MANV = default(string);
 					}
 					this.SendPropertyChanged("NHANVIEN");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="THANNHAN_COTN", Storage="_THANNHAN", ThisKey="MATN", OtherKey="MATN", IsForeignKey=true)]
+		public THANNHAN THANNHAN
+		{
+			get
+			{
+				return this._THANNHAN.Entity;
+			}
+			set
+			{
+				THANNHAN previousValue = this._THANNHAN.Entity;
+				if (((previousValue != value) 
+							|| (this._THANNHAN.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._THANNHAN.Entity = null;
+						previousValue.COTNs.Remove(this);
+					}
+					this._THANNHAN.Entity = value;
+					if ((value != null))
+					{
+						value.COTNs.Add(this);
+						this._MATN = value.MATN;
+					}
+					else
+					{
+						this._MATN = default(string);
+					}
+					this.SendPropertyChanged("THANNHAN");
 				}
 			}
 		}
@@ -796,6 +844,8 @@ namespace HRM_Hospital.DAL
 		
 		private System.Nullable<System.DateTime> _NGAYLAPDON;
 		
+		private System.Nullable<bool> _DUOCDUYET;
+		
 		private EntityRef<NHANVIEN> _NHANVIEN;
 		
     #region Extensibility Method Definitions
@@ -816,6 +866,8 @@ namespace HRM_Hospital.DAL
     partial void OnDENNGAYChanged();
     partial void OnNGAYLAPDONChanging(System.Nullable<System.DateTime> value);
     partial void OnNGAYLAPDONChanged();
+    partial void OnDUOCDUYETChanging(System.Nullable<bool> value);
+    partial void OnDUOCDUYETChanged();
     #endregion
 		
 		public DONXIN()
@@ -844,7 +896,7 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(4)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(10)")]
 		public string MANV
 		{
 			get
@@ -968,6 +1020,26 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DUOCDUYET", DbType="Bit")]
+		public System.Nullable<bool> DUOCDUYET
+		{
+			get
+			{
+				return this._DUOCDUYET;
+			}
+			set
+			{
+				if ((this._DUOCDUYET != value))
+				{
+					this.OnDUOCDUYETChanging(value);
+					this.SendPropertyChanging();
+					this._DUOCDUYET = value;
+					this.SendPropertyChanged("DUOCDUYET");
+					this.OnDUOCDUYETChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHANVIEN_DONXIN", Storage="_NHANVIEN", ThisKey="MANV", OtherKey="MANV", IsForeignKey=true)]
 		public NHANVIEN NHANVIEN
 		{
@@ -1041,9 +1113,11 @@ namespace HRM_Hospital.DAL
 		
 		private System.Nullable<System.DateTime> _NGAY;
 		
-		private System.Nullable<System.DateTime> _THOIGIAN;
-		
 		private string _DIADIEM;
+		
+		private System.Nullable<System.TimeSpan> _THOIGIAN;
+		
+		private System.Nullable<bool> _CODILAM;
 		
 		private EntityRef<NHANVIEN> _NHANVIEN;
 		
@@ -1065,10 +1139,12 @@ namespace HRM_Hospital.DAL
     partial void OnLOAICVChanged();
     partial void OnNGAYChanging(System.Nullable<System.DateTime> value);
     partial void OnNGAYChanged();
-    partial void OnTHOIGIANChanging(System.Nullable<System.DateTime> value);
-    partial void OnTHOIGIANChanged();
     partial void OnDIADIEMChanging(string value);
     partial void OnDIADIEMChanged();
+    partial void OnTHOIGIANChanging(System.Nullable<System.TimeSpan> value);
+    partial void OnTHOIGIANChanged();
+    partial void OnCODILAMChanging(System.Nullable<bool> value);
+    partial void OnCODILAMChanged();
     #endregion
 		
 		public LICH()
@@ -1078,7 +1154,7 @@ namespace HRM_Hospital.DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MALICH", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MALICH", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string MALICH
 		{
 			get
@@ -1098,7 +1174,7 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(4)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(10)")]
 		public string MANV
 		{
 			get
@@ -1122,7 +1198,7 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAPHG", DbType="VarChar(4)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAPHG", DbType="VarChar(10)")]
 		public string MAPHG
 		{
 			get
@@ -1206,8 +1282,28 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_THOIGIAN", DbType="SmallDateTime")]
-		public System.Nullable<System.DateTime> THOIGIAN
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DIADIEM", DbType="Char(50)")]
+		public string DIADIEM
+		{
+			get
+			{
+				return this._DIADIEM;
+			}
+			set
+			{
+				if ((this._DIADIEM != value))
+				{
+					this.OnDIADIEMChanging(value);
+					this.SendPropertyChanging();
+					this._DIADIEM = value;
+					this.SendPropertyChanged("DIADIEM");
+					this.OnDIADIEMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_THOIGIAN", DbType="Time")]
+		public System.Nullable<System.TimeSpan> THOIGIAN
 		{
 			get
 			{
@@ -1226,22 +1322,22 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DIADIEM", DbType="Char(50)")]
-		public string DIADIEM
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CODILAM", DbType="Bit")]
+		public System.Nullable<bool> CODILAM
 		{
 			get
 			{
-				return this._DIADIEM;
+				return this._CODILAM;
 			}
 			set
 			{
-				if ((this._DIADIEM != value))
+				if ((this._CODILAM != value))
 				{
-					this.OnDIADIEMChanging(value);
+					this.OnCODILAMChanging(value);
 					this.SendPropertyChanging();
-					this._DIADIEM = value;
-					this.SendPropertyChanged("DIADIEM");
-					this.OnDIADIEMChanged();
+					this._CODILAM = value;
+					this.SendPropertyChanged("CODILAM");
+					this.OnCODILAMChanged();
 				}
 			}
 		}
@@ -1371,7 +1467,7 @@ namespace HRM_Hospital.DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(4)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(10)")]
 		public string MANV
 		{
 			get
@@ -1510,6 +1606,68 @@ namespace HRM_Hospital.DAL
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.NGAYNGHI")]
+	public partial class NGAYNGHI : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.DateTime _NGAY;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnNGAYChanging(System.DateTime value);
+    partial void OnNGAYChanged();
+    #endregion
+		
+		public NGAYNGHI()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NGAY", DbType="Date NOT NULL", IsPrimaryKey=true)]
+		public System.DateTime NGAY
+		{
+			get
+			{
+				return this._NGAY;
+			}
+			set
+			{
+				if ((this._NGAY != value))
+				{
+					this.OnNGAYChanging(value);
+					this.SendPropertyChanging();
+					this._NGAY = value;
+					this.SendPropertyChanged("NGAY");
+					this.OnNGAYChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.NHANVIEN")]
 	public partial class NHANVIEN : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1550,6 +1708,8 @@ namespace HRM_Hospital.DAL
 		
 		private string _LOAINV;
 		
+		private EntitySet<TRINHDONGHIEPVU> _TRINHDONGHIEPVUs;
+		
 		private EntitySet<COTN> _COTNs;
 		
 		private EntitySet<DONXIN> _DONXINs;
@@ -1563,8 +1723,6 @@ namespace HRM_Hospital.DAL
 		private EntitySet<QUYETDINH> _QUYETDINHs;
 		
 		private EntitySet<TAIKHOAN> _TAIKHOANs;
-		
-		private EntitySet<TRINHDONGHIEPVU> _TRINHDONGHIEPVUs;
 		
 		private EntityRef<BANGCHAMCONG> _BANGCHAMCONG;
 		
@@ -1610,6 +1768,7 @@ namespace HRM_Hospital.DAL
 		
 		public NHANVIEN()
 		{
+			this._TRINHDONGHIEPVUs = new EntitySet<TRINHDONGHIEPVU>(new Action<TRINHDONGHIEPVU>(this.attach_TRINHDONGHIEPVUs), new Action<TRINHDONGHIEPVU>(this.detach_TRINHDONGHIEPVUs));
 			this._COTNs = new EntitySet<COTN>(new Action<COTN>(this.attach_COTNs), new Action<COTN>(this.detach_COTNs));
 			this._DONXINs = new EntitySet<DONXIN>(new Action<DONXIN>(this.attach_DONXINs), new Action<DONXIN>(this.detach_DONXINs));
 			this._LICHes = new EntitySet<LICH>(new Action<LICH>(this.attach_LICHes), new Action<LICH>(this.detach_LICHes));
@@ -1617,12 +1776,11 @@ namespace HRM_Hospital.DAL
 			this._QUATRINHCONGTACs = new EntitySet<QUATRINHCONGTAC>(new Action<QUATRINHCONGTAC>(this.attach_QUATRINHCONGTACs), new Action<QUATRINHCONGTAC>(this.detach_QUATRINHCONGTACs));
 			this._QUYETDINHs = new EntitySet<QUYETDINH>(new Action<QUYETDINH>(this.attach_QUYETDINHs), new Action<QUYETDINH>(this.detach_QUYETDINHs));
 			this._TAIKHOANs = new EntitySet<TAIKHOAN>(new Action<TAIKHOAN>(this.attach_TAIKHOANs), new Action<TAIKHOAN>(this.detach_TAIKHOANs));
-			this._TRINHDONGHIEPVUs = new EntitySet<TRINHDONGHIEPVU>(new Action<TRINHDONGHIEPVU>(this.attach_TRINHDONGHIEPVUs), new Action<TRINHDONGHIEPVU>(this.detach_TRINHDONGHIEPVUs));
 			this._BANGCHAMCONG = default(EntityRef<BANGCHAMCONG>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string MANV
 		{
 			get
@@ -1642,7 +1800,7 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MA_BANGCC", DbType="VarChar(4)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MA_BANGCC", DbType="VarChar(10)")]
 		public string MA_BANGCC
 		{
 			get
@@ -1966,6 +2124,19 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHANVIEN_TRINHDONGHIEPVU", Storage="_TRINHDONGHIEPVUs", ThisKey="MANV", OtherKey="MANV")]
+		public EntitySet<TRINHDONGHIEPVU> TRINHDONGHIEPVUs
+		{
+			get
+			{
+				return this._TRINHDONGHIEPVUs;
+			}
+			set
+			{
+				this._TRINHDONGHIEPVUs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHANVIEN_COTN", Storage="_COTNs", ThisKey="MANV", OtherKey="MANV")]
 		public EntitySet<COTN> COTNs
 		{
@@ -2057,19 +2228,6 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHANVIEN_TRINHDONGHIEPVU", Storage="_TRINHDONGHIEPVUs", ThisKey="MANV", OtherKey="MANV")]
-		public EntitySet<TRINHDONGHIEPVU> TRINHDONGHIEPVUs
-		{
-			get
-			{
-				return this._TRINHDONGHIEPVUs;
-			}
-			set
-			{
-				this._TRINHDONGHIEPVUs.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BANGCHAMCONG_NHANVIEN", Storage="_BANGCHAMCONG", ThisKey="MA_BANGCC", OtherKey="MA_BANGCC", IsForeignKey=true)]
 		public BANGCHAMCONG BANGCHAMCONG
 		{
@@ -2122,6 +2280,18 @@ namespace HRM_Hospital.DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_TRINHDONGHIEPVUs(TRINHDONGHIEPVU entity)
+		{
+			this.SendPropertyChanging();
+			entity.NHANVIEN = this;
+		}
+		
+		private void detach_TRINHDONGHIEPVUs(TRINHDONGHIEPVU entity)
+		{
+			this.SendPropertyChanging();
+			entity.NHANVIEN = null;
 		}
 		
 		private void attach_COTNs(COTN entity)
@@ -2207,18 +2377,6 @@ namespace HRM_Hospital.DAL
 			this.SendPropertyChanging();
 			entity.NHANVIEN = null;
 		}
-		
-		private void attach_TRINHDONGHIEPVUs(TRINHDONGHIEPVU entity)
-		{
-			this.SendPropertyChanging();
-			entity.NHANVIEN = this;
-		}
-		
-		private void detach_TRINHDONGHIEPVUs(TRINHDONGHIEPVU entity)
-		{
-			this.SendPropertyChanging();
-			entity.NHANVIEN = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PHONGKHOA")]
@@ -2262,7 +2420,7 @@ namespace HRM_Hospital.DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAPHG", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAPHG", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string MAPHG
 		{
 			get
@@ -2494,7 +2652,7 @@ namespace HRM_Hospital.DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAQTCT", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAQTCT", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string MAQTCT
 		{
 			get
@@ -2514,7 +2672,7 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(4)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(10)")]
 		public string MANV
 		{
 			get
@@ -2538,7 +2696,7 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAPHG", DbType="VarChar(4)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAPHG", DbType="VarChar(10)")]
 		public string MAPHG
 		{
 			get
@@ -2778,7 +2936,7 @@ namespace HRM_Hospital.DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAQD", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAQD", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string MAQD
 		{
 			get
@@ -2798,7 +2956,7 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAPHG", DbType="VarChar(4)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAPHG", DbType="VarChar(10)")]
 		public string MAPHG
 		{
 			get
@@ -2822,7 +2980,7 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(4)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(10)")]
 		public string MANV
 		{
 			get
@@ -3051,7 +3209,7 @@ namespace HRM_Hospital.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(4)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(10)")]
 		public string MANV
 		{
 			get
@@ -3170,229 +3328,180 @@ namespace HRM_Hospital.DAL
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TRINHDONGHIEPVU")]
-	public partial class TRINHDONGHIEPVU : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.THANNHAN")]
+	public partial class THANNHAN : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _MATDNV;
+		private string _MATN;
 		
-		private string _TENTRUONG;
+		private string _HOTENTN;
 		
-		private string _TENLOPHOCNV;
+		private System.Nullable<System.DateTime> _NAMSINH;
 		
-		private System.Nullable<System.DateTime> _THOIGIANHOCNV;
+		private string _QUANHE;
 		
-		private string _HINHTHUCHOCNV;
+		private string _NGHENGHIEP;
 		
-		private string _CHUNGNHAN;
+		private string _DVCONGTAC;
 		
-		private string _MANV;
-		
-		private EntityRef<NHANVIEN> _NHANVIEN;
+		private EntitySet<COTN> _COTNs;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnMATDNVChanging(string value);
-    partial void OnMATDNVChanged();
-    partial void OnTENTRUONGChanging(string value);
-    partial void OnTENTRUONGChanged();
-    partial void OnTENLOPHOCNVChanging(string value);
-    partial void OnTENLOPHOCNVChanged();
-    partial void OnTHOIGIANHOCNVChanging(System.Nullable<System.DateTime> value);
-    partial void OnTHOIGIANHOCNVChanged();
-    partial void OnHINHTHUCHOCNVChanging(string value);
-    partial void OnHINHTHUCHOCNVChanged();
-    partial void OnCHUNGNHANChanging(string value);
-    partial void OnCHUNGNHANChanged();
-    partial void OnMANVChanging(string value);
-    partial void OnMANVChanged();
+    partial void OnMATNChanging(string value);
+    partial void OnMATNChanged();
+    partial void OnHOTENTNChanging(string value);
+    partial void OnHOTENTNChanged();
+    partial void OnNAMSINHChanging(System.Nullable<System.DateTime> value);
+    partial void OnNAMSINHChanged();
+    partial void OnQUANHEChanging(string value);
+    partial void OnQUANHEChanged();
+    partial void OnNGHENGHIEPChanging(string value);
+    partial void OnNGHENGHIEPChanged();
+    partial void OnDVCONGTACChanging(string value);
+    partial void OnDVCONGTACChanged();
     #endregion
 		
-		public TRINHDONGHIEPVU()
+		public THANNHAN()
 		{
-			this._NHANVIEN = default(EntityRef<NHANVIEN>);
+			this._COTNs = new EntitySet<COTN>(new Action<COTN>(this.attach_COTNs), new Action<COTN>(this.detach_COTNs));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MATDNV", DbType="VarChar(4) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string MATDNV
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MATN", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MATN
 		{
 			get
 			{
-				return this._MATDNV;
+				return this._MATN;
 			}
 			set
 			{
-				if ((this._MATDNV != value))
+				if ((this._MATN != value))
 				{
-					this.OnMATDNVChanging(value);
+					this.OnMATNChanging(value);
 					this.SendPropertyChanging();
-					this._MATDNV = value;
-					this.SendPropertyChanged("MATDNV");
-					this.OnMATDNVChanged();
+					this._MATN = value;
+					this.SendPropertyChanged("MATN");
+					this.OnMATNChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENTRUONG", DbType="Char(50)")]
-		public string TENTRUONG
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HOTENTN", DbType="Char(50)")]
+		public string HOTENTN
 		{
 			get
 			{
-				return this._TENTRUONG;
+				return this._HOTENTN;
 			}
 			set
 			{
-				if ((this._TENTRUONG != value))
+				if ((this._HOTENTN != value))
 				{
-					this.OnTENTRUONGChanging(value);
+					this.OnHOTENTNChanging(value);
 					this.SendPropertyChanging();
-					this._TENTRUONG = value;
-					this.SendPropertyChanged("TENTRUONG");
-					this.OnTENTRUONGChanged();
+					this._HOTENTN = value;
+					this.SendPropertyChanged("HOTENTN");
+					this.OnHOTENTNChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENLOPHOCNV", DbType="Char(50)")]
-		public string TENLOPHOCNV
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NAMSINH", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> NAMSINH
 		{
 			get
 			{
-				return this._TENLOPHOCNV;
+				return this._NAMSINH;
 			}
 			set
 			{
-				if ((this._TENLOPHOCNV != value))
+				if ((this._NAMSINH != value))
 				{
-					this.OnTENLOPHOCNVChanging(value);
+					this.OnNAMSINHChanging(value);
 					this.SendPropertyChanging();
-					this._TENLOPHOCNV = value;
-					this.SendPropertyChanged("TENLOPHOCNV");
-					this.OnTENLOPHOCNVChanged();
+					this._NAMSINH = value;
+					this.SendPropertyChanged("NAMSINH");
+					this.OnNAMSINHChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_THOIGIANHOCNV", DbType="SmallDateTime")]
-		public System.Nullable<System.DateTime> THOIGIANHOCNV
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QUANHE", DbType="Char(20)")]
+		public string QUANHE
 		{
 			get
 			{
-				return this._THOIGIANHOCNV;
+				return this._QUANHE;
 			}
 			set
 			{
-				if ((this._THOIGIANHOCNV != value))
+				if ((this._QUANHE != value))
 				{
-					this.OnTHOIGIANHOCNVChanging(value);
+					this.OnQUANHEChanging(value);
 					this.SendPropertyChanging();
-					this._THOIGIANHOCNV = value;
-					this.SendPropertyChanged("THOIGIANHOCNV");
-					this.OnTHOIGIANHOCNVChanged();
+					this._QUANHE = value;
+					this.SendPropertyChanged("QUANHE");
+					this.OnQUANHEChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HINHTHUCHOCNV", DbType="Char(30)")]
-		public string HINHTHUCHOCNV
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NGHENGHIEP", DbType="Char(50)")]
+		public string NGHENGHIEP
 		{
 			get
 			{
-				return this._HINHTHUCHOCNV;
+				return this._NGHENGHIEP;
 			}
 			set
 			{
-				if ((this._HINHTHUCHOCNV != value))
+				if ((this._NGHENGHIEP != value))
 				{
-					this.OnHINHTHUCHOCNVChanging(value);
+					this.OnNGHENGHIEPChanging(value);
 					this.SendPropertyChanging();
-					this._HINHTHUCHOCNV = value;
-					this.SendPropertyChanged("HINHTHUCHOCNV");
-					this.OnHINHTHUCHOCNVChanged();
+					this._NGHENGHIEP = value;
+					this.SendPropertyChanged("NGHENGHIEP");
+					this.OnNGHENGHIEPChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CHUNGNHAN", DbType="Char(50)")]
-		public string CHUNGNHAN
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DVCONGTAC", DbType="Char(50)")]
+		public string DVCONGTAC
 		{
 			get
 			{
-				return this._CHUNGNHAN;
+				return this._DVCONGTAC;
 			}
 			set
 			{
-				if ((this._CHUNGNHAN != value))
+				if ((this._DVCONGTAC != value))
 				{
-					this.OnCHUNGNHANChanging(value);
+					this.OnDVCONGTACChanging(value);
 					this.SendPropertyChanging();
-					this._CHUNGNHAN = value;
-					this.SendPropertyChanged("CHUNGNHAN");
-					this.OnCHUNGNHANChanged();
+					this._DVCONGTAC = value;
+					this.SendPropertyChanged("DVCONGTAC");
+					this.OnDVCONGTACChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANV", DbType="VarChar(4)")]
-		public string MANV
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="THANNHAN_COTN", Storage="_COTNs", ThisKey="MATN", OtherKey="MATN")]
+		public EntitySet<COTN> COTNs
 		{
 			get
 			{
-				return this._MANV;
+				return this._COTNs;
 			}
 			set
 			{
-				if ((this._MANV != value))
-				{
-					if (this._NHANVIEN.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMANVChanging(value);
-					this.SendPropertyChanging();
-					this._MANV = value;
-					this.SendPropertyChanged("MANV");
-					this.OnMANVChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="NHANVIEN_TRINHDONGHIEPVU", Storage="_NHANVIEN", ThisKey="MANV", OtherKey="MANV", IsForeignKey=true)]
-		public NHANVIEN NHANVIEN
-		{
-			get
-			{
-				return this._NHANVIEN.Entity;
-			}
-			set
-			{
-				NHANVIEN previousValue = this._NHANVIEN.Entity;
-				if (((previousValue != value) 
-							|| (this._NHANVIEN.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._NHANVIEN.Entity = null;
-						previousValue.TRINHDONGHIEPVUs.Remove(this);
-					}
-					this._NHANVIEN.Entity = value;
-					if ((value != null))
-					{
-						value.TRINHDONGHIEPVUs.Add(this);
-						this._MANV = value.MANV;
-					}
-					else
-					{
-						this._MANV = default(string);
-					}
-					this.SendPropertyChanged("NHANVIEN");
-				}
+				this._COTNs.Assign(value);
 			}
 		}
 		
@@ -3414,6 +3523,18 @@ namespace HRM_Hospital.DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_COTNs(COTN entity)
+		{
+			this.SendPropertyChanging();
+			entity.THANNHAN = this;
+		}
+		
+		private void detach_COTNs(COTN entity)
+		{
+			this.SendPropertyChanging();
+			entity.THANNHAN = null;
 		}
 	}
 }

@@ -11,8 +11,12 @@ namespace HRM_Hospital.BLL
 {
     class THANNHANBLL:BLL
     {
+        private Boolean check_Empty()
+        {
+            return this.get_AllRecord().Count == 0;
+        }
         COTNBLL bll_CTN = new COTNBLL();
-        public List<THANNHAN> LayTatCa()
+        public List<THANNHAN> get_AllRecord()
         {
             return DB.THANNHANs.ToList();
         }
@@ -24,29 +28,25 @@ namespace HRM_Hospital.BLL
                            select (TN);
             return ThanNhan.ToList();
         }
-        public bool KiemTraMaTrung(string MATN)
-        {
-            foreach (string ma in (from matn in DB.THANNHANs select matn.MATN))
-            {
-                if (ma.ToLower().Contains(MATN.ToLower()) && (ma.Trim().Length == MATN.Trim().Length))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
         public string set_MaTN(string MANV)
         {
             string str;
-            var TN = DB.THANNHANs.ToList();
-            if(TN.Count>0)
+            var AllRecord = this.get_AllRecord();
+            if (!check_Empty())
             {
-                str = TN.Last().MATN;
-                str = String.Concat(str.Where(char.IsDigit));
-                return "T" + (Int16.Parse(str) + 1);
+                int max = 0;
+                int index = 0;
+                foreach (THANNHAN rc in AllRecord)
+                {
+                    str = String.Concat(rc.MATN.Where(char.IsDigit));
+                    index = Int16.Parse(str);
+                    if (index > max)
+                        max = index;
+                }
+                return "TN" + (max + 1);
             }
-            return "T1";
-            //Ex: NV02TN01
+            return "TN1";
+            //EX: NV2TN1
         }
         public string get_MaTN(string MANV)
         {
@@ -54,7 +54,7 @@ namespace HRM_Hospital.BLL
             return "T" + (ThanNhan.Count() + 1);
             //Ex: NV02TN01
         }
-        public void Them(string MATN, string HOTENTN, DateTime NAMSINH, string QUANHE,
+        public void Insert(string MATN, string HOTENTN, DateTime NAMSINH, string QUANHE,
             string NGHENGHIEP,string DVCONGTAC)
         {
             try
@@ -68,17 +68,17 @@ namespace HRM_Hospital.BLL
                 thannhan.DVCONGTAC = DVCONGTAC;
                 DB.THANNHANs.InsertOnSubmit(thannhan);
                 DB.SubmitChanges();
-                MessageBox.Show("Thêm mới thông tin thành công.", "Thông báo.", MessageBoxButtons.OK,
+                MessageBox.Show(msg.insert_success, "Thông báo.", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
             catch
             {
-                MessageBox.Show("Thêm mới thông tin thất bại.", "Thông báo.", MessageBoxButtons.OK, 
+                MessageBox.Show(msg.insert_fail, "Thông báo.", MessageBoxButtons.OK, 
                     MessageBoxIcon.Information);
             }
 
         }
-        public void Capnhat(string MATN, string HOTENTN, DateTime NAMSINH, string QUANHE, 
+        public void Update(string MATN, string HOTENTN, DateTime NAMSINH, string QUANHE, 
             string NGHENGHIEP, string DVCONGTAC)
         {
             try
@@ -91,7 +91,7 @@ namespace HRM_Hospital.BLL
                 thannhan.NGHENGHIEP = NGHENGHIEP;
                 thannhan.DVCONGTAC = DVCONGTAC;
                 DB.SubmitChanges();
-                MessageBox.Show("Cập nhật thông tin thành công.", "Thông báo.", MessageBoxButtons.OK,
+                MessageBox.Show(msg.update_success, "Thông báo.", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
             catch
@@ -100,7 +100,7 @@ namespace HRM_Hospital.BLL
                     MessageBoxIcon.Information);
             }
         }
-        public void Xoa(string MATN)
+        public void Delete(string MATN)
         {
             try
             {
@@ -108,7 +108,7 @@ namespace HRM_Hospital.BLL
                 DB.THANNHANs.DeleteOnSubmit(thannhan);
                 DB.SubmitChanges();
                 if (!onMinifrm)
-                    MessageBox.Show("Xóa thông tin thành công.", "Thông báo.", MessageBoxButtons.OK,
+                    MessageBox.Show(msg.delete_success, "Thông báo.", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                 else
                     this.Status += "\nXóa trong bảng THANNHAN: THÀNH CÔNG";

@@ -13,5 +13,6 @@ namespace HRM_Hospital.BLL
         protected QLNSDataContext DB = new QLNSDataContext();
         public string Status;
         public Boolean onMinifrm = false;
+        protected MessageString msg = new MessageString();
     }
 }

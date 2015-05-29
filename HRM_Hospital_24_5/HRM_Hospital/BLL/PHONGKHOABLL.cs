@@ -10,32 +10,61 @@ namespace HRM_Hospital.BLL
 {
     class PHONGKHOABLL:BLL
     {
-        public List<PHONGKHOA> LayTatCa()
+        public Boolean check_Empty()
         {
-            return DB.PHONGKHOAs.ToList();
+            return this.get_AllRecord().Count == 0;
         }
-        public List<string> LayMaPHG()
+        public List<PHONGKHOA> get_AllRecord()
         {
-            List<string> str = new List<string>();
-            foreach (string ma in (from MaPH in DB.PHONGKHOAs select MaPH.MAPHG))
+            try
             {
-                str.Add(ma);
+                return DB.PHONGKHOAs.ToList();
             }
-            return str;
+            catch
+            {
+                MessageBox.Show(msg.get_fail, "Thông báo.", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            return null;
+        }
+        public List<string> get_MaPHG()
+        {
+            try
+            {
+                var phong = from tb in DB.PHONGKHOAs
+                            select (tb.MAPHG);
+                return phong.ToList();
+            }
+            catch
+            {
+                MessageBox.Show(msg.get_fail, "Thông báo.", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            return null;
         }
 
-        public bool KiemTraMaTrung(string Ma_PHG)
+
+        public string set_MAPHG()
         {
-            foreach (string nv in (from record in DB.PHONGKHOAs select record.MAPHG))
+            string str;
+            var AllRecord = this.get_AllRecord();
+            if (!check_Empty())
             {
-                if ((nv.ToLower().Contains(Ma_PHG.ToLower()) == true) && (nv.Trim().Length == Ma_PHG.Trim().Length))
+                int max = 0;
+                int index = 0;
+                foreach (PHONGKHOA rc in AllRecord)
                 {
-                    return true;
+                    str = String.Concat(rc.MAPHG.Where(char.IsDigit));
+                    index = Int16.Parse(str);
+                    if (index > max)
+                        max = index;
                 }
+                return "PH" + (max + 1);
             }
-            return false;
+            return "PH1";
         }
-        public void Them(string MaPHG,string TENPHG,string KHOI)
+
+        public void Insert(string MaPHG, string TENPHG, string KHOI)
         {
             try
             {
@@ -45,47 +74,32 @@ namespace HRM_Hospital.BLL
                 nv.KHOI = KHOI;
                 DB.PHONGKHOAs.InsertOnSubmit(nv);
                 DB.SubmitChanges();
-                MessageBox.Show("Thêm mới thông tin thành công.", "Thông báo.", MessageBoxButtons.OK, 
+                MessageBox.Show(msg.insert_success, "Thông báo.", MessageBoxButtons.OK, 
                     MessageBoxIcon.Information);
             }
             catch
             {
-                MessageBox.Show("Thêm mới thông tin thất bại.", "Thông báo.", MessageBoxButtons.OK, 
+                MessageBox.Show(msg.insert_fail, "Thông báo.", MessageBoxButtons.OK, 
                     MessageBoxIcon.Information);
             }
         }
-        public void Capnhat(string MaPHG, string TENPHG, string KHOI)
+        public void Update(string MaPHG, string TENPHG, string KHOI)
         {
             try
             {
-                var nv = DB.PHONGKHOAs.FirstOrDefault(tk => tk.MAPHG == MaPHG);
+                var nv = DB.PHONGKHOAs.FirstOrDefault(rc => rc.MAPHG == MaPHG);
                 nv.MAPHG = MaPHG;
                 nv.TENPHG = TENPHG;
                 nv.KHOI = KHOI;
                 DB.SubmitChanges();
-                MessageBox.Show("Thêm mới thông tin thành công.", "Thông báo.", MessageBoxButtons.OK, 
+                MessageBox.Show(msg.update_success, "Thông báo.", MessageBoxButtons.OK, 
                     MessageBoxIcon.Information);
             }
             catch
             {
-                MessageBox.Show("Thêm mới thông tin thất bại.", "Thông báo.", MessageBoxButtons.OK, 
+                MessageBox.Show(msg.update_fail, "Thông báo.", MessageBoxButtons.OK, 
                     MessageBoxIcon.Information);
             }
         }
-        public void Xoa(string MaPHG)
-        {
-            try
-            {
-                var nv = DB.PHONGKHOAs.FirstOrDefault(tk => tk.MAPHG == MaPHG);
-                DB.PHONGKHOAs.DeleteOnSubmit(nv);
-                DB.SubmitChanges();
-                MessageBox.Show("Xóa thông tin thành công.", "Thông báo", MessageBoxButtons.OK);
-            }
-            catch
-            {
-                MessageBox.Show("Xóa thông tin thất bại.", "Thông báo", MessageBoxButtons.OK);
-            }
-        }
-
     }
 }

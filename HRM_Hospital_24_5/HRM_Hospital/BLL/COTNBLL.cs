@@ -10,7 +10,7 @@ namespace HRM_Hospital.BLL
     class COTNBLL:BLL
     {
 
-        public void Them(String MANV, String MATN)
+        public void Insert(String MANV, String MATN)
         {
             try
             {
@@ -19,16 +19,16 @@ namespace HRM_Hospital.BLL
                 CTN.MATN = MATN;
                 DB.COTNs.InsertOnSubmit(CTN);
                 DB.SubmitChanges();
-                MessageBox.Show("Thêm thông tin thành công.", "Thông báo", MessageBoxButtons.OK);
+                MessageBox.Show(msg.insert_success, "Thông báo", MessageBoxButtons.OK);
             }
             catch
             {
-                MessageBox.Show("Thêm thông tin thất bại.", "Thông báo", MessageBoxButtons.OK);
+                MessageBox.Show(msg.insert_fail, "Thông báo", MessageBoxButtons.OK);
             }
            
           
         }
-        public void Xoa(String MATN)
+        public void Delete(String MATN)
         {
             try
             {
@@ -36,14 +36,14 @@ namespace HRM_Hospital.BLL
                 DB.COTNs.DeleteOnSubmit(CTN);
                 DB.SubmitChanges();
 
-                MessageBox.Show("Xóa thông tin thành công.", "Thông báo", MessageBoxButtons.OK);
+                MessageBox.Show(msg.delete_success, "Thông báo", MessageBoxButtons.OK);
             }
             catch
             {
-                MessageBox.Show("Xóa thông tin thất bại.", "Thông báo", MessageBoxButtons.OK);
+                MessageBox.Show(msg.delete_fail, "Thông báo", MessageBoxButtons.OK);
             } 
         }
-        public void Xoa_MANV(string MANV)
+        public void Delete_MANV(string MANV)
         {
             try
             {
@@ -53,13 +53,13 @@ namespace HRM_Hospital.BLL
                     DB.COTNs.DeleteOnSubmit(cotn);
                     DB.SubmitChanges();
                     THANNHANBLL TN = new THANNHANBLL();
-                    TN.Xoa(cotn.MATN);
+                    TN.Delete(cotn.MATN);
                 }
-                this.Status += "\nXóa trong Bảng COTN: THÀNH CÔNG";
+                this.Status += "\nCOTN: " + msg.delete_success;
             }                  
             catch
             {
-                this.Status += "\nXóa trong Bảng COTN: THẤT BẠI";
+                this.Status += "\nCOTN: " + msg.delete_fail; ;
             }            
         }
     }

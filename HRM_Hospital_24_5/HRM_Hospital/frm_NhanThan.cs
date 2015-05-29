@@ -25,8 +25,8 @@ namespace HRM_Hospital
             
             this.MANV = MANV;
             this.lb_tennhanvien.Text += bll_nhanvien.get_TEN(MANV);
-            btn_Capnhat.Enabled = false;
-            btn_Xoa.Enabled = false;
+            btn_Update.Enabled = false;
+            btn_Delete.Enabled = false;
             Refresh_GridView();
             Format_Time();
          
@@ -46,9 +46,9 @@ namespace HRM_Hospital
 
         private void Clear_Insert()
         {
-            btn_Themmoi.Enabled = true;
-            btn_Capnhat.Enabled = false;
-            btn_Xoa.Enabled = false;
+            btn_Insertmoi.Enabled = true;
+            btn_Update.Enabled = false;
+            btn_Delete.Enabled = false;
             tb_Hoten.Text = null;
             tb_Congtac.Text = null;
             tb_Quanhe.Text = null;
@@ -93,9 +93,9 @@ namespace HRM_Hospital
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            btn_Themmoi.Enabled = false;
-            btn_Capnhat.Enabled = true;
-            btn_Xoa.Enabled = true;
+            btn_Insertmoi.Enabled = false;
+            btn_Update.Enabled = true;
+            btn_Delete.Enabled = true;
             int r = e.RowIndex;
             if (r < 0)
                 return;
@@ -111,36 +111,36 @@ namespace HRM_Hospital
             }
         }
 
-        private void btn_Themmoi_Click(object sender, EventArgs e)
+        private void btn_Insertmoi_Click(object sender, EventArgs e)
         {
             if (KiemTraDuLieuNhap() == false)
                 return;
             this.MaTN = this.bll_TN.set_MaTN(this.MANV);
-            bll_TN.Them(this.MaTN, tb_Hoten.Text, dtime_Ngaysinh.Value ,tb_Quanhe.Text, tb_Nghenghiep.Text,tb_Congtac.Text);
-            bll_CTN.Them(this.MANV, this.MaTN);
+            bll_TN.Insert(this.MaTN, tb_Hoten.Text, dtime_Ngaysinh.Value ,tb_Quanhe.Text, tb_Nghenghiep.Text,tb_Congtac.Text);
+            bll_CTN.Insert(this.MANV, this.MaTN);
             Refresh_GridView();
             Clear_Insert();
        } 
 
-        private void btn_Capnhat_Click(object sender, EventArgs e)
+        private void btn_Update_Click(object sender, EventArgs e)
         {
             if (KiemTraDuLieuNhap() == false)
             {
                 return;
             }
-            bll_TN.Capnhat(this.MaTN, tb_Hoten.Text, dtime_Ngaysinh.Value, tb_Quanhe.Text, tb_Nghenghiep.Text, tb_Congtac.Text);
+            bll_TN.Update(this.MaTN, tb_Hoten.Text, dtime_Ngaysinh.Value, tb_Quanhe.Text, tb_Nghenghiep.Text, tb_Congtac.Text);
             Refresh_GridView();
             Clear_Insert();
         }
 
-        private void btn_Xoa_Click(object sender, EventArgs e)
+        private void btn_Delete_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Bạn có thực sự muốn xóa?", "Question", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
             {
                 return;
             }
-            bll_CTN.Xoa(this.MaTN);
-            bll_TN.Xoa(this.MaTN);
+            bll_CTN.Delete(this.MaTN);
+            bll_TN.Delete(this.MaTN);
             Refresh_GridView();
             Clear_Insert();
         }

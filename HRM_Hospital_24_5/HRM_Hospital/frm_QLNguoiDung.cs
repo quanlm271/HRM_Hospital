@@ -19,11 +19,10 @@ namespace HRM_Hospital
         {
             
             InitializeComponent();
-            btn_Capnhat.Enabled = false;
-            btn_Xoa.Enabled = false;
+            btn_Update.Enabled = false;
+            btn_Delete.Enabled = false;
             Refresh_GridView();
-            cbb_MANV.Text = "(Nope)";
-            var listMANV = bll_taikhoan.LayMANV();
+            var listMANV = bll_taikhoan.get_MANV();
             foreach (String str in listMANV)
                 this.cbb_MANV.Items.Add(str);
          
@@ -31,15 +30,15 @@ namespace HRM_Hospital
 
         public void Refresh_GridView()
         {
-            this.dataGridView1.DataSource = bll_taikhoan.LayTatCa();
+            this.dataGridView1.DataSource = bll_taikhoan.get_AllRecord();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             cbb_MANV.Enabled = false;
-            btn_Themmoi.Enabled = false;
-            btn_Capnhat.Enabled = true;
-            btn_Xoa.Enabled = true;
+            btn_Insertmoi.Enabled = false;
+            btn_Update.Enabled = true;
+            btn_Delete.Enabled = true;
             int r = e.RowIndex;
             if (r < 0)
                 return;
@@ -83,7 +82,7 @@ namespace HRM_Hospital
             return true;
         }
 
-        private void btn_Themmoi_Click(object sender, EventArgs e)
+        private void btn_Insertmoi_Click(object sender, EventArgs e)
         {
             if (KiemTraDuLieuNhap() == false)
                 return;
@@ -99,38 +98,39 @@ namespace HRM_Hospital
                   MessageBoxIcon.Error);
                 return;
             }
-            bll_taikhoan.Them(tb_TDN.Text, cbb_MANV.Text, tb_matkhau.Text, cb_Admin.Checked == true ? true : false);      
+            bll_taikhoan.Insert(tb_TDN.Text, cbb_MANV.Text, tb_matkhau.Text, cb_Admin.Checked == true ? true : false);      
             Refresh_GridView();
         }
 
         public void Clear_Insert()
         {
             cbb_MANV.Enabled = true;
-            btn_Themmoi.Enabled = true;
-            btn_Capnhat.Enabled = false;
-            btn_Xoa.Enabled = false;
+            btn_Insertmoi.Enabled = true;
+            btn_Update.Enabled = false;
+            btn_Delete.Enabled = false;
             cbb_MANV.Text = "(Nope)";
             tb_matkhau.Text = null;
             tb_TDN.Text = null;
             cb_Admin.Checked = false;
         }
 
-        private void btn_Xoa_Click(object sender, EventArgs e)
+        private void btn_Delete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có thực sự muốn xóa?", "Question", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+            if (MessageBox.Show("Bạn có thực sự muốn xóa?", "Question", MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question) == DialogResult.Cancel)
             {
                 return;
             }
-            bll_taikhoan.Xoa(this.cbb_MANV.Text);
+            bll_taikhoan.Delete(this.cbb_MANV.Text);
             Refresh_GridView();
             Clear_Insert();
         }
 
-        private void btn_Capnhat_Click(object sender, EventArgs e)
+        private void btn_Update_Click(object sender, EventArgs e)
         {
             if (!KiemTraDuLieuNhap())
                 return;
-            bll_taikhoan.Capnhat(tb_TDN.Text, cbb_MANV.Text, tb_matkhau.Text, cb_Admin.Checked == true ? true : false);
+            bll_taikhoan.Update(tb_TDN.Text, cbb_MANV.Text, tb_matkhau.Text, cb_Admin.Checked == true ? true : false);
             Refresh_GridView();
             Clear_Insert();
         }

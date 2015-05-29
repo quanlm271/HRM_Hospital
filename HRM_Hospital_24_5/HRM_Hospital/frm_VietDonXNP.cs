@@ -18,7 +18,7 @@ namespace HRM_Hospital
         int Days = 0;
         int NgayConLai;
         int NgayDaNghi=0;
-        public int songaynghi = 15;
+        public int songaynghi = 7;
         public frm_Main frm_main;
         String MANV;
         DONXINBLL bll_donxin = new DONXINBLL();
@@ -28,22 +28,13 @@ namespace HRM_Hospital
             InitializeComponent();
             this.MANV = MANV;
             this.FillData();
-            Format_Time();
-        }
-
-        public void Format_Time()
-        {
-            date_denngay.Format = DateTimePickerFormat.Custom;
-            date_denngay.CustomFormat = "dd/MM/yyyy";
-            date_tungay.Format = DateTimePickerFormat.Custom;
-            date_tungay.CustomFormat = "dd/MM/yyyy";
         }
 
         private void btn_NopDon_Click(object sender, EventArgs e)
         {
             if (this.Days <= this.NgayConLai && this.Days>0)
             {
-                bll_donxin.Them(this.frm_main.MANV,
+                bll_donxin.Insert(this.frm_main.MANV,
                                 Int16.Parse(this.tb_songay.Text),
                                 this.tb_lydo.Text,
                                 this.date_tungay.Value,
@@ -57,7 +48,15 @@ namespace HRM_Hospital
 
         private void cal_Date()
         {
-            Days = this.date_denngay.Value.Subtract(this.date_tungay.Value).Days + 1;
+            Days = 0;
+            int dueday = this.date_denngay.Value.Date.Subtract(this.date_tungay.Value.Date).Days + 1;
+            int temp = 0;
+            
+            while (temp++ < dueday)
+            {
+                if (!this.date_tungay.Value.Date.AddDays(temp).DayOfWeek.Equals(DayOfWeek.Sunday))
+                    Days++;
+            }
             this.tb_songay.Text = Days.ToString();
         }
 

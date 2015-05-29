@@ -16,15 +16,23 @@ namespace HRM_Hospital
     public partial class frm_QLNhanVien : DevExpress.XtraEditors.XtraForm 
     {
         public frm_Main frm_Main;
-        string MANV;
+        string MANV, MABCC;
         NHANVIENBLL bll_nhanvien = new NHANVIENBLL();
+        PHONGKHOABLL bll_phongkhoa = new PHONGKHOABLL();
+        BANGCHAMCONGBLL bll_bchamcong = new BANGCHAMCONGBLL();
         public frm_QLNhanVien()
         {
             InitializeComponent();
-            btn_Capnhat.Enabled = false;
+            btn_Update.Enabled = false;
             btn_Thannhan.Enabled = false;
             btn_Congtac.Enabled = false;
-            btn_Xoa.Enabled = false;
+            btn_Delete.Enabled = false;
+
+            if (this.bll_phongkhoa.check_Empty())
+                return;
+
+            foreach (string str in this.bll_phongkhoa.get_MaPHG())
+                this.ccb_phong.Items.Add(str);
             Refresh_GridView();
             Format_Time();
         }
@@ -32,7 +40,7 @@ namespace HRM_Hospital
 
         public void Refresh_GridView()
         {
-            this.dataGridView1.DataSource = bll_nhanvien.LayTatCa();
+            this.dataGridView1.DataSource = bll_nhanvien.get_AllRecord();
         }
 
         public void Format_Time()
@@ -43,16 +51,22 @@ namespace HRM_Hospital
 
         private void Clear_Insert()
         {
-            btn_Themmoi.Enabled = true;
-            btn_Capnhat.Enabled = false;
-            btn_Xoa.Enabled = false;
+            btn_Insert.Enabled = true;
+            btn_Update.Enabled = false;
+            btn_Delete.Enabled = false;
             btn_Thannhan.Enabled = false;
             tb_Hoten.Text = null;
-            tb_Chucvu.Text = null;
+            tb_dchi.Text = null;
             tb_CMND.Text = null;
-            tb_Quequan.Text = null;
+            tb_loainv.Text = null;
+            this.tb_bac.ResetText();
+            this.tb_ngach.ResetText();
+            this.tb_tongiao.ResetText();
+            this.tb_dantoc.ResetText();
+            this.ccb_phong.SelectedIndex = -1;
             btn_Congtac.Enabled = false;
             cb_Phai.Checked = false;
+            cb_gdlietsi.Checked = false;
             dtime_Ngaysinh.Value = DateTime.Now;
         }
 
@@ -60,93 +74,142 @@ namespace HRM_Hospital
         {
             if (tb_Hoten.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Họ tên không được để trống,", "Thông Báo", MessageBoxButtons.OK,
+                MessageBox.Show("Họ tên không được để trống.", "Thông Báo", MessageBoxButtons.OK,
+                  MessageBoxIcon.Error);
+                return false;
+            }
+            if (DateTime.Now.Year - dtime_Ngaysinh.Value.Year < 18)
+            {
+                MessageBox.Show("Ngày sinh chưa chính xác.", "Thông Báo", MessageBoxButtons.OK,
                   MessageBoxIcon.Error);
                 return false;
             }
             if (tb_CMND.Text.Trim().Length < 9)
             {
-                MessageBox.Show("Số chứng minh nhân dân chưa chính xác,", "Thông Báo", MessageBoxButtons.OK,
+                MessageBox.Show("Số chứng minh nhân dân chưa chính xác.", "Thông Báo", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return false;
             }
-            if (tb_Quequan.Text.Trim().Length == 0)
+            if (tb_dchi.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Địa chỉ không được để trống,", "Thông Báo", MessageBoxButtons.OK,
+                MessageBox.Show("Địa Chỉ không được để trống.", "Thông Báo", MessageBoxButtons.OK,
                   MessageBoxIcon.Error);
                 return false;
             }
-            if (tb_Chucvu.Text.Trim().Length == 0)
+           
+            if (tb_dantoc.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Chức vụ không được để trống,", "Thông Báo", MessageBoxButtons.OK,
+                MessageBox.Show("Dân tộc không được để trống.", "Thông Báo", MessageBoxButtons.OK,
                   MessageBoxIcon.Error);
                 return false;
             }
-           if (DateTime.Now.Year - dtime_Ngaysinh.Value.Year < 18)
+            if (tb_tongiao.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Ngày sinh chưa chính xác", "Thông Báo", MessageBoxButtons.OK,
+                MessageBox.Show("Tôn giáo không được để trống.", "Thông Báo", MessageBoxButtons.OK,
+                  MessageBoxIcon.Error);
+                return false;
+            }
+            if (tb_ngach.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Nghạch không được để trống.", "Thông Báo", MessageBoxButtons.OK,
+                  MessageBoxIcon.Error);
+                return false;
+            }
+            if (tb_bac.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Bậc không được để trống.", "Thông Báo", MessageBoxButtons.OK,
+                  MessageBoxIcon.Error);
+                return false;
+            }
+            if (tb_loainv.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Loại không được để trống.", "Thông Báo", MessageBoxButtons.OK,
+                  MessageBoxIcon.Error);
+                return false;
+            }
+            if (ccb_phong.Text == "")
+            {
+                MessageBox.Show("Phòng không được để trống.", "Thông Báo", MessageBoxButtons.OK,
                   MessageBoxIcon.Error);
                 return false;
             }
            return true;
         }
 
-        private void btn_Xoa_Click(object sender, EventArgs e)
+        private void btn_Delete_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Bạn có thực sự muốn xóa?", "Question", MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Question) == DialogResult.Cancel)
-            {
                 return;
-            }
             bll_nhanvien.Status = "";
             bll_nhanvien.onMinifrm = true;
-            bll_nhanvien.Xoa(MANV);
+            bll_nhanvien.Delete(MANV);
             Refresh_GridView();
             Clear_Insert();
         }
 
-        private void btn_Themmoi_Click(object sender, EventArgs e)
+        private void btn_Insert_Click(object sender, EventArgs e)
         {
             if (KiemTraDuLieuNhap() == false)
                 return;
             this.MANV = this.bll_nhanvien.set_MANV();
-            bll_nhanvien.Them(this.MANV, tb_Hoten.Text, tb_CMND.Text,
-                cb_Phai.Checked == true ? true : false,dtime_Ngaysinh.Value,tb_Quequan.Text,tb_Chucvu.Text);
+            this.MABCC = this.bll_bchamcong.set_MABCC();
+            //insert table BANGCC
+            bll_bchamcong.Insert(this.MABCC, DateTime.Now.Month, this.ccb_phong.Text, 0);
+            //insert table NHANVIEN
+            bll_nhanvien.Insert(this.MANV, tb_Hoten.Text, dtime_Ngaysinh.Value.Date, this.cb_Phai.Checked,
+                tb_CMND.Text, tb_dchi.Text, this.tb_dantoc.Text, this.tb_tongiao.Text,
+                this.cb_gdlietsi.Checked, this.tb_ngach.Text, this.tb_bac.Text, tb_loainv.Text, this.MABCC);
             Refresh_GridView();
             Clear_Insert();
         }
 
-        private void btn_Capnhat_Click(object sender, EventArgs e)
+        private void btn_Update_Click(object sender, EventArgs e)
         {
             if (KiemTraDuLieuNhap() == false)
             {
                 return;
             }
-            bll_nhanvien.Capnhat(this.MANV, tb_Hoten.Text, tb_CMND.Text,
-                cb_Phai.Checked == true ? true : false, dtime_Ngaysinh.Value, tb_Quequan.Text, tb_Chucvu.Text);
+            //Update MAPHONG BANGCC
+            bll_bchamcong.Update_MAPHG(this.MABCC, this.ccb_phong.Text);
+            //Update NHANVIEN
+            bll_nhanvien.Update(this.MANV, tb_Hoten.Text, dtime_Ngaysinh.Value.Date, this.cb_Phai.Checked,
+                tb_CMND.Text, tb_dchi.Text, this.tb_dantoc.Text, this.tb_tongiao.Text,
+                this.cb_gdlietsi.Checked, this.tb_ngach.Text, this.tb_bac.Text, tb_loainv.Text);
             Refresh_GridView();
             Clear_Insert();
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             btn_Thannhan.Enabled = true;
-            btn_Themmoi.Enabled = false;
-            btn_Capnhat.Enabled = true;
+            btn_Insert.Enabled = false;
+            btn_Update.Enabled = true;
             btn_Congtac.Enabled = true;
-            btn_Xoa.Enabled = true;
+            btn_Delete.Enabled = true;
             int r = e.RowIndex;
             if (r < 0)
                 return;
             if (!this.dataGridView1.Rows[r].IsNewRow)
             {
                 this.dataGridView1.Rows[r].Selected = true;
-                this.MANV = this.dataGridView1.Rows[r].Cells["cl_MANV"].Value.ToString();
-                tb_Hoten.Text = this.dataGridView1.Rows[r].Cells["cl_Hoten"].Value.ToString();
-                tb_CMND.Text = this.dataGridView1.Rows[r].Cells["cl_CMND"].Value.ToString();
-                tb_Chucvu.Text = this.dataGridView1.Rows[r].Cells["cl_Quequan"].Value.ToString();
-                tb_Quequan.Text = this.dataGridView1.Rows[r].Cells["cl_Chucvu"].Value.ToString();
-                cb_Phai.Checked = (bool)dataGridView1.Rows[r].Cells["cl_Gioitinh"].Value;
-                dtime_Ngaysinh.Value = Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells["cl_Ngaysinh"].Value);
+
+                this.MANV = this.dataGridView1.Rows[r].Cells["MANV"].Value.ToString();
+                this.MABCC = this.bll_nhanvien.get_MABCC(this.MANV);
+
+                tb_Hoten.Text = this.dataGridView1.Rows[r].Cells["HOTENNV"].Value.ToString();
+                tb_CMND.Text = this.dataGridView1.Rows[r].Cells["CMND"].Value.ToString();
+                tb_loainv.Text = this.dataGridView1.Rows[r].Cells["LOAINV"].Value.ToString();
+                tb_dchi.Text = this.dataGridView1.Rows[r].Cells["NOIOHIENTAI"].Value.ToString();
+                cb_Phai.Checked = (bool)dataGridView1.Rows[r].Cells["PHAI"].Value;
+                this.tb_bac.Text = this.dataGridView1.Rows[r].Cells["BAC"].Value.ToString();
+                this.tb_ngach.Text = this.dataGridView1.Rows[r].Cells["NGACH"].Value.ToString();
+                this.tb_bac.Text = this.dataGridView1.Rows[r].Cells["BAC"].Value.ToString();
+                this.tb_tongiao.Text = this.dataGridView1.Rows[r].Cells["TONGIAO"].Value.ToString();
+                this.tb_dantoc.Text = this.dataGridView1.Rows[r].Cells["DANTOC"].Value.ToString();
+                dtime_Ngaysinh.Value = Convert.ToDateTime(dataGridView1.Rows[e.RowIndex].Cells["NGAYSINH"].Value);
+
+                this.ccb_phong.Text = bll_bchamcong.get_BANGCC(
+                                this.dataGridView1.Rows[r].Cells["MA_BANGCC"].Value.ToString()).FirstOrDefault().MAPHG;
             }
         }
 
